@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elettricità — Ferramenta Ballini</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/site-shared.css">
+<link rel="stylesheet" href="../assets/catalog.css">
+</head>
+<body>
+
+<header class="site-header" id="siteHeader">
+  <div class="container">
+    <div class="brand">
+      <a href="../index.html"><img src="../img_index/logo.png" alt="Ferramenta Ballini"></a>
+    </div>
+    <nav>
+      <a href="../index.html#offerte">Vetrina</a>
+      <a href="../index.html#catalogo">Catalogo</a>
+      <a href="../index.html#bombole-gas">Bombole a gas</a>
+      <a href="../index.html#contatti">Contatti</a>
+    </nav>
+    <a class="call-btn" href="tel:+390612345678">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Chiama
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Apri il menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="1.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="page-head">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="../index.html">Home</a> &nbsp;/&nbsp; <a href="../index.html#catalogo">Catalogo</a> &nbsp;/&nbsp; Elettricità
+    </div>
+    <h1><svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.3V16a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1.2c0-.9.4-1.7 1-2.3A6 6 0 0 0 12 2z"/></svg>Elettricità</h1>
+  </div>
+</section>
+
+<div class="container">
+<div class="catalog-page">
+
+  <aside class="catalog-sidebar">
+    <div class="catalog-sidebar-inner">
+      <div class="filter-group">
+        <h4>Categoria</h4>
+        <div id="categoryFilters"></div>
+      </div>
+      <div class="filter-group">
+        <h4>Fascia di prezzo</h4>
+        <div id="priceFilters"></div>
+      </div>
+      <div class="filter-group">
+        <h4>Disponibilità</h4>
+        <div id="availabilityFilters"></div>
+      </div>
+    </div>
+    <button class="filter-reset" id="resetFilters">Reimposta filtri</button>
+  </aside>
+
+  <main class="catalog-main">
+    <div class="catalog-toolbar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input type="text" id="searchInput" placeholder="Cerca un prodotto in questo reparto...">
+      </div>
+    </div>
+
+    <div class="catalog-count" id="catalogCount"></div>
+    <div class="catalog-grid" id="catalogGrid"></div>
+  </main>
+
+</div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../img_index/logo_footer.png" alt="Ferramenta Ballini">
+      </div>
+      <div class="footer-nav">
+        <a href="../index.html#offerte">Vetrina</a>
+      <a href="../index.html#catalogo">Catalogo</a>
+      <a href="../index.html#bombole-gas">Bombole a gas</a>
+      <a href="../index.html#contatti">Contatti</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ferramenta Ballini. Dal 1954.</span>
+      <span>Via Armando Diaz, 301, 03014 Fiuggi (FR)</span>
+      <a href="../area-gestione.html" style="opacity:0.55;">Area riservata</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.CATALOG_CONFIG = {
+    categoryIcon: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 21h4"/><path d="M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.3V16a1 1 0 0 0 1 1h4a1 1 0 0 0 1-1v-1.2c0-.9.4-1.7 1-2.3A6 6 0 0 0 12 2z"/></svg>`,
+    subcategories: ["Cavi e prolunghe", "Prese e interruttori", "Illuminazione", "Multiprese", "Fusibili e quadri", "Torce e pile", "Altro"],
+    products: []
+  };
+</script>
+<script src="../assets/catalog.js"></script>
+
+</body>
+</html>
