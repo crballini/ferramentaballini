@@ -40,7 +40,7 @@
     'disponibile': 'Disponibile',
     'in-arrivo':   'In arrivo',
     'esaurito':    'Esaurito',
-    'da-ordinare': 'Da ordinare'
+    'contattare-negozio': 'Contattare negozio'
   };
   const PRICE_BANDS = [
     { id:'p1', label:'Fino a € 10',   test:(v)=> v <= 10 },
