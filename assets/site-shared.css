@@ -26,6 +26,7 @@ body{
   font-family:'Work Sans', sans-serif;
   font-size:16px;
   line-height:1.65;
+  overflow-x:hidden;
 }
 h1,h2,h3,h4, .label-font{
   font-family:'Oswald', sans-serif;
@@ -126,6 +127,13 @@ footer{ background:var(--ink); color:var(--cream); padding:48px 0 26px; margin-t
     background:var(--paper); border-bottom:1px solid var(--line); padding:20px 28px 24px; gap:18px;
   }
   .site-header.open .call-btn{ display:inline-flex; margin:0 28px 22px; align-self:flex-start; }
+}
+
+@media (max-width: 640px){
+  .container{ padding:0 18px; }
+  .page-head{ padding:32px 0 24px; }
+  .page-head h1{ gap:10px; }
+  .page-head h1 svg{ width:26px; height:26px; }
 }
 
 @media (prefers-reduced-motion: reduce){ *{ transition:none !important; scroll-behavior:auto !important; } }

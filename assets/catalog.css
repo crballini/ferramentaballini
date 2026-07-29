@@ -175,12 +175,16 @@
   .catalog-sidebar{
     position:static; height:auto; overflow-y:visible;
     border-right:none; border-bottom:1px solid var(--line);
-    padding:24px 28px;
+    padding:20px 4px;
   }
   .catalog-sidebar-inner{ display:flex; flex-wrap:wrap; gap:0 40px; }
   .filter-group{ min-width:200px; flex:1; }
+  .catalog-main{ padding:24px 4px 70px; }
 }
-@media (max-width: 560px){
+@media (max-width: 640px){
+  .catalog-sidebar-inner{ flex-direction:column; gap:0; }
+  .filter-group{ min-width:0; }
+  .catalog-toolbar{ gap:12px; }
   .catalog-grid{ grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); }
   .modal-box{ padding:26px 22px; }
 }
