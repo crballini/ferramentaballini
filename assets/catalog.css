@@ -98,8 +98,8 @@
 .availability[data-status="in-arrivo"]{ color:var(--yellow-dark); }
 .availability[data-status="esaurito"] .dot{ background:var(--red); }
 .availability[data-status="esaurito"]{ color:var(--red); }
-.availability[data-status="da-ordinare"] .dot{ background:var(--purple); }
-.availability[data-status="da-ordinare"]{ color:var(--purple); }
+.availability[data-status="contattare-negozio"] .dot{ background:var(--purple); }
+.availability[data-status="contattare-negozio"]{ color:var(--purple); }
 
 .product-body{ padding:18px 20px 22px; display:flex; flex-direction:column; flex:1; }
 .product-cat{
