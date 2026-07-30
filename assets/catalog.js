@@ -42,12 +42,15 @@
     'esaurito':    'Esaurito',
     'contattare-negozio': 'Contattare negozio'
   };
-  const PRICE_BANDS = [
+  const DEFAULT_PRICE_BANDS = [
     { id:'p1', label:'Fino a € 10',   test:(v)=> v <= 10 },
     { id:'p2', label:'€ 10 – € 30',   test:(v)=> v > 10 && v <= 30 },
     { id:'p3', label:'€ 30 – € 60',   test:(v)=> v > 30 && v <= 60 },
     { id:'p4', label:'Oltre € 60',    test:(v)=> v > 60 }
   ];
+  // Ogni reparto può definire fasce di prezzo personalizzate tramite
+  // CATALOG_CONFIG.priceBands; se non specificate, si usano quelle di default.
+  const PRICE_BANDS = cfg.priceBands || DEFAULT_PRICE_BANDS;
 
   function buildCheckboxList(container, items, name){
     container.innerHTML = items.map(item => `

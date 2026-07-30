@@ -104,6 +104,12 @@
   window.CATALOG_CONFIG = {
     categoryIcon: `<svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><circle cx="12" cy="14" r="5"/><line x1="8" y1="6" x2="10" y2="6"/></svg>`,
     subcategories: ["Frigoriferi e congelatori", "Lavatrici e asciugatrici", "Lavastoviglie", "Cucine", "Televisori", "Piccoli elettrodomestici", "Elettrodomestici da incasso", "Climatizzazione", "Riscaldamento", "Ricambi e accessori", "Cura della persona", "Altro"], 
+    priceBands: [
+      { id:'p1', label:'Fino a € 200',   test:(v)=> v <= 200 },
+      { id:'p2', label:'€ 200 – € 300',  test:(v)=> v > 200 && v <= 300 },
+      { id:'p3', label:'€ 300 – € 400',  test:(v)=> v > 300 && v <= 400 },
+      { id:'p4', label:'Oltre € 400',    test:(v)=> v > 400 }
+    ],
     products: [
   {
     "name": "Frigo combi BEKO - 262 LT, H177, INOX",

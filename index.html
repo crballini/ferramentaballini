@@ -173,6 +173,7 @@
     transform:rotate(-45deg);
     mix-blend-mode:multiply;
   }
+  .hero-wrench-mobile{ display:none; }
 
   /* ---------- SECTION HEADS ---------- */
   .section{ padding:90px 0; border-top:1px solid var(--line); }
@@ -393,7 +394,17 @@
     }
     .site-header.open nav .call-btn{ margin-top:4px; }
     .hero .container{ grid-template-columns:1fr; }
-    .hero-art{ max-width:220px; margin:24px auto 0; }
+    .hero-art{ display:none; }
+    .hero-eyebrow{ display:flex; align-items:center; gap:8px; }
+    .hero-wrench-mobile{
+      display:inline-block;
+      width:20px;
+      height:20px;
+      object-fit:contain;
+      transform:rotate(-45deg);
+      mix-blend-mode:multiply;
+      flex-shrink:0;
+    }
     .offers-grid{ grid-template-columns:1fr 1fr; }
     .cat-grid{ grid-template-columns:1fr 1fr; }
     .contact-grid{ grid-template-columns:1fr; }
@@ -440,7 +451,7 @@
 <section class="hero">
   <div class="container">
     <div class="hero-copy">
-      <span class="eyebrow">Ferramenta Ballini - dal 1954</span>
+      <span class="eyebrow hero-eyebrow">Ferramenta Ballini - dal 1954<img src="img_index/adjustable_wrench.png" alt="" class="hero-wrench-mobile"></span>
       <div class="rule"></div>
       <h1>Tutto l'occorrente, sempre a portata di mano.</h1>
       <p class="lead">Elettrodomestici, articoli di ferramenta, vernici e tanto altro, pronti in negozio o su ordinazione.</p>
@@ -506,7 +517,7 @@
       <span class="eyebrow">Catalogo</span>
       <div class="rule"></div>
       <h2>Il catalogo dei prodotti</h2>
-      <p>Otto reparti, organizzati come in negozio, per trovare subito quello che ti serve.</p>
+      <p>Otto reparti, organizzati come in negozio, per trovare subito quello che ti serve. Consigliamo di contattare il negozio tramite email o telefono per verificare la disponibilità immediata dei prodotti</p>
     </div>
     <div class="cat-grid">
 
