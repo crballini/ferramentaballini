@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://crballini.github.io/ferramentaballini/sitemap.xml
