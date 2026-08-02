@@ -77,11 +77,28 @@
     return String(str).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
   }
 
+  function formatPrice(price){
+    const raw = String(price).trim();
+    if (/^\d+([.,]\d+)?$/.test(raw)){
+      return `€ ${Number(raw.replace(',', '.')).toFixed(2).replace('.', ',')}`;
+    }
+    return raw;
+  }
+
+  function parsePrice(price){
+    const match = String(price).match(/\d+(?:[.,]\d+)?/);
+    return match ? parseFloat(match[0].replace(',', '.')) : NaN;
+  }
+
   function renderCard(p){
     const availLabel = AVAILABILITY_LABELS[p.availability] || p.availability;
     const imageHtml = p.image
       ? `<img src="${p.image}" alt="${escapeHtml(p.name)}">`
       : iconSvg();
+    const variantHtml = (p.variants && p.variants.options && p.variants.options.length)
+      ? `<div class="product-variant"><label>${escapeHtml(p.variants.label)}</label><select class="variant-select">${p.variants.options.map(o => `<option value="${escapeHtml(o.price)}">${escapeHtml(o.value)}</option>`).join('')}</select></div>`
+      : '';
+    const initialPrice = (p.variants && p.variants.options && p.variants.options.length) ? p.variants.options[0].price : p.price;
     return `
       <div class="product-card">
         <div class="product-image">
@@ -91,7 +108,8 @@
         <div class="product-body">
           <div class="product-cat">${escapeHtml(p.category)}</div>
           <div class="product-name">${escapeHtml(p.name)}</div>
-          <div class="product-price">€ ${Number(p.price).toFixed(2).replace('.', ',')}</div>
+          ${variantHtml}
+          <div class="product-price">${formatPrice(initialPrice)}</div>
         </div>
       </div>
     `;
@@ -109,7 +127,7 @@
       if (avails.length && !avails.includes(p.availability)) return false;
       if (priceIds.length){
         const bands = PRICE_BANDS.filter(b => priceIds.includes(b.id));
-        if (!bands.some(b => b.test(Number(p.price)))) return false;
+        if (!bands.some(b => b.test(parsePrice(p.price)))) return false;
       }
       return true;
     });
@@ -128,6 +146,14 @@
       return;
     }
     grid.innerHTML = list.map(renderCard).join('');
+    grid.querySelectorAll('.product-card').forEach(card => {
+      const select = card.querySelector('.variant-select');
+      if (select){
+        select.addEventListener('change', () => {
+          card.querySelector('.product-price').textContent = formatPrice(select.value);
+        });
+      }
+    });
   }
 
   searchInput.addEventListener('input', applyFilters);

@@ -139,11 +139,32 @@
   display:block; font-family:'Oswald', sans-serif; font-size:0.76rem; text-transform:uppercase;
   letter-spacing:0.04em; margin-bottom:7px; color:var(--ink);
 }
-.field input[type="text"], .field input[type="number"], .field select{
+.field input[type="text"], .field input[type="number"], .field select, .field textarea{
   width:100%; border:1px solid var(--line); background:transparent;
   padding:10px 12px; font-family:'Work Sans', sans-serif; font-size:0.93rem; color:var(--ink);
 }
 .field input:focus, .field select:focus{ outline:none; border-color:var(--ink); }
+
+.checkbox-field{
+  display:flex; align-items:center; gap:10px; text-transform:none;
+  font-family:'Work Sans', sans-serif; font-size:0.9rem; letter-spacing:normal; cursor:pointer;
+}
+.checkbox-field input{ accent-color:var(--ink); width:16px; height:16px; flex-shrink:0; cursor:pointer; }
+
+.variant-fields{ display:none; }
+.variant-fields.open{ display:block; }
+
+.product-variant{ margin-bottom:14px; }
+.product-variant label{
+  display:block; font-family:'Oswald', sans-serif; font-size:0.68rem; text-transform:uppercase;
+  letter-spacing:0.05em; color:var(--ink-faint); margin-bottom:5px;
+}
+.product-variant select{
+  width:100%; border:1px solid var(--line); background:var(--paper);
+  padding:8px 10px; font-family:'Work Sans', sans-serif; font-size:0.85rem; color:var(--ink);
+}
+.product-variant select:focus{ outline:none; border-color:var(--ink); }
+.variant-fields textarea{ min-height:80px; resize:vertical; }
 
 .image-upload{ display:flex; align-items:center; gap:14px; }
 .image-upload .preview{
