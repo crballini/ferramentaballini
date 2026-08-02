@@ -366,6 +366,55 @@
     gap:10px;
   }
 
+  /* ---------- SEZIONE BOMBOLE (Personalizzata) ---------- */
+.gas-top-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.gas-top-area .section-head {
+  margin-bottom: 0;
+  flex: 1;
+}
+.gas-illustration {
+  flex: 1.2;
+  max-width: 550px;
+  display: flex;
+  justify-content: flex-end;
+}
+.gas-illustration img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 8px; /* Opzionale: smussa leggermente gli angoli dell'immagine */
+}
+.offers-grid.three-cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* Regole Mobile per la nuova sezione */
+@media (max-width: 900px) {
+  .gas-top-area {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .gas-illustration {
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .offers-grid.three-cols {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 560px) {
+  .offers-grid.three-cols {
+    grid-template-columns: 1fr;
+  }
+}
+
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 900px){
     nav{ display:none; }
@@ -634,13 +683,23 @@
 
 <section class="section" id="bombole-gas">
   <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">Gas</span>
-      <div class="rule"></div>
-      <h2>Bombole a gas</h2>
-      <p>I formati e i prezzi delle bombole a gas disponibili in negozio e per consegna a domicilio a Fiuggi.</p>
+    
+    <!-- Nuova intestazione con Immagine a destra -->
+    <div class="gas-top-area">
+      <div class="section-head">
+        <span class="eyebrow">Gas</span>
+        <div class="rule"></div>
+        <h2>Bombole a gas</h2>
+        <p>I formati e i prezzi delle bombole a gas disponibili in negozio e per consegna a domicilio a Fiuggi.</p>
+      </div>
+      <div class="gas-illustration">
+        <!-- Riferimento esatto al file allegato -->
+        <img src="img_index/bombole_gpl.svg" alt="Illustrazione bombole a gas 10, 15 e 20 kg">
+      </div>
     </div>
-    <div class="offers-grid">
+
+    <!-- Griglia modificata per occupare lo spazio con 3 riquadri -->
+    <div class="offers-grid three-cols">
       <div class="offer-card">
         <span class="tag is-new">GPL</span>
         <h3>Bombola GPL 10 kg</h3>
@@ -665,10 +724,8 @@
           <div class="new-note">A domicilio: € 55</div>
         </div>
       </div>
-      <div class="offer-card">
-        <img src="img_index/bombole_gpl.png" alt="Un vasto assortimento di bombole GPL in negozio" style="width: 100%; height: auto; display: block; object-fit: contain; flex-grow: 1;">
-      </div>
     </div>
+    
   </div>
 </section>
 
