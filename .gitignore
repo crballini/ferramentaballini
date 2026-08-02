@@ -7,6 +7,3 @@ assets/admin-data.js
 
 # Stili dell'area di gestione
 assets/admin.css
-
-# Esportazioni di backup (per evitare di caricare i file scaricati per sbaglio)
-*.json

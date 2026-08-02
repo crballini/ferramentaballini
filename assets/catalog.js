@@ -5,15 +5,16 @@
    {
      categoryIcon: '<svg ...>...</svg>',   // placeholder immagine
      subcategories: ['Nome A', 'Nome B', ...],
-     products: [
-       { name, category, price, availability, image: null }
-     ]
+     productsUrl: 'assets/data/prodotti-<reparto>.json'   // array di prodotti caricato via fetch
    }
+   I prodotti vivono in un file .json separato (vedi productsUrl) invece che
+   inline nella pagina: aggiornare l'inventario significa sovrascrivere quel
+   file, esportato dall'area di gestione, senza toccare questo HTML.
    La gestione dell'inventario (aggiunta/modifica/eliminazione prodotti)
    avviene esclusivamente da area-gestione.html, non da questa pagina.
    ============================================================ */
 (function(){
-  const cfg = window.CATALOG_CONFIG || { subcategories:[], products:[], categoryIcon:'' };
+  const cfg = window.CATALOG_CONFIG || { subcategories:[], productsUrl:'', categoryIcon:'' };
 
   function sortBySubcategory(list, subcategories){
     return list
@@ -26,7 +27,7 @@
       .map(x => x.p);
   }
 
-  const products = sortBySubcategory(cfg.products.map((p, i) => Object.assign({ id: 'p' + i }, p)), cfg.subcategories);
+  let products = [];
 
   const grid        = document.getElementById('catalogGrid');
   const countEl      = document.getElementById('catalogCount');
@@ -172,5 +173,21 @@
     menuToggle.addEventListener('click', () => header.classList.toggle('open'));
   }
 
-  applyFilters();
+  /* ---------- Caricamento prodotti da file .json esterno ---------- */
+  grid.innerHTML = `<div class="catalog-empty">Caricamento prodotti...</div>`;
+
+  fetch(cfg.productsUrl)
+    .then(res => {
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
+    })
+    .then(data => {
+      products = sortBySubcategory(data.map((p, i) => Object.assign({ id: 'p' + i }, p)), cfg.subcategories);
+      applyFilters();
+    })
+    .catch(err => {
+      console.error('Impossibile caricare i prodotti:', err);
+      grid.innerHTML = `<div class="catalog-empty">Impossibile caricare i prodotti in questo momento. Riprova più tardi.</div>`;
+      countEl.innerHTML = '';
+    });
 })();
