@@ -1,9 +1,2 @@
 # File principali dell'area riservata
 area-gestione.html
-
-# Script e logiche di amministrazione
-assets/admin.js
-assets/admin-data.js
-
-# Stili dell'area di gestione
-assets/admin.css
