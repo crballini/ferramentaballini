@@ -176,7 +176,8 @@
   /* ---------- Caricamento prodotti da file .json esterno ---------- */
   grid.innerHTML = `<div class="catalog-empty">Caricamento prodotti...</div>`;
 
-  fetch(cfg.productsUrl)
+// Modifica qui: aggiungiamo ?v=timestamp per eludere la cache
+  fetch(cfg.productsUrl + '?v=' + new Date().getTime())
     .then(res => {
       if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.json();
