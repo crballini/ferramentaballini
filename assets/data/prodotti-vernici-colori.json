@@ -1,5 +1,6 @@
 [
   {
+    "code": "VC-PEN-001",
     "name": "Pennellessa tripla manico legno",
     "category": "Pennelli e rulli",
     "price": "1,50",
@@ -36,6 +37,7 @@
     }
   },
   {
+    "code": "VC-PEN-002",
     "name": "Pennellessa tripla manico plastica",
     "category": "Pennelli e rulli",
     "price": "0,90",

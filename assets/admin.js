@@ -99,6 +99,44 @@
 
     const AVAILABILITY_LABELS = { 'disponibile':'Disponibile', 'in-arrivo':'In arrivo', 'esaurito':'Esaurito', 'contattare-negozio':'Contattare negozio' };
 
+    // Codice prodotto: <REPARTO>-<SOTTOCATEGORIA>-<progressivo>, es. ED-LAV-001.
+    // Tenere sincronizzati con le mappe usate per generare i codici già presenti
+    // nei file assets/data/prodotti-*.json e in admin-data.js.
+    const DEPT_CODES = {
+      'utensili-manuali': 'UM',
+      'elettroutensili': 'EU',
+      'elettricita': 'EL',
+      'idraulica': 'ID',
+      'edilizia-ferramenta': 'EF',
+      'elettrodomestici': 'ED',
+      'vernici-colori': 'VC',
+      'vario': 'VA'
+    };
+    const SUBCAT_CODES = {
+      'utensili-manuali': { 'Chiavi':'CHI', 'Cacciaviti e bit':'CAC', 'Pinze e tronchesi':'PIN', 'Martelli e mazze':'MAR', 'Metri e livelle':'MET', 'Taglio':'TAG', 'Set e valigette':'SET', 'Altro':'ALT' },
+      'elettroutensili': { 'Trapani e avvitatori':'TRA', 'Seghe':'SEG', 'Levigatrici':'LEV', 'Smerigliatrici':'SME', 'Batterie e caricabatterie':'BAT', 'Accessori':'ACC', 'Altro':'ALT' },
+      'elettricita': { 'Cavi e prolunghe':'CAV', 'Prese e interruttori':'PRE', 'Illuminazione':'ILL', 'Multiprese':'MUL', 'Fusibili e quadri':'FUS', 'Torce e pile':'TOR', 'Altro':'ALT' },
+      'idraulica': { 'Tubi e raccordi':'TUB', 'Rubinetteria':'RUB', 'Sifoni e scarichi':'SIF', 'Guarnizioni':'GUA', 'Pompe':'POM', 'Teflon e sigillanti':'TEF', 'Press control':'PRC', 'Accessori doccia':'DOC', 'Altro':'ALT' },
+      'edilizia-ferramenta': { 'Viti e bulloneria':'VIT', 'Tasselli e ancoraggi':'TAS', 'Cemento e malte':'CEM', 'Ferramenta varia':'FER', 'Catene e corde':'CAT', 'Lucchetti e serrature':'LUC', 'Scarpe':'SCA', 'Altro':'ALT' },
+      'elettrodomestici': { 'Frigoriferi e congelatori':'FRI', 'Lavatrici e asciugatrici':'LAV', 'Lavastoviglie':'LVS', 'Cucine':'CUC', 'Televisori':'TEL', 'Piccoli elettrodomestici':'PIC', 'Elettrodomestici da incasso':'INC', 'Climatizzazione':'CLI', 'Riscaldamento':'RIS', 'Ricambi e accessori':'RIC', 'Cura della persona':'CUR', 'Altro':'ALT' },
+      'vernici-colori': { 'Pitture murali':'PIT', 'Smalti e vernici legno':'SML', 'Pennelli e rulli':'PEN', 'Solventi e diluenti':'SOL', 'Nastri e teli protettivi':'NAS', 'Stucchi e decorazioni':'STU', 'Tinte decorative':'TIN', 'Vernici speciali':'VRS', 'Altro':'ALT' },
+      'vario': { 'Articoli per la casa':'CAS', 'Contenitori e organizzazione':'CON', 'Cancelleria e ufficio':'CAN', 'Pulizia':'PUL', 'Articoli stagionali':'STA', 'Giardinaggio':'GIA', 'Altro':'ALT' }
+    };
+
+    function generateCode(dept, category){
+      const deptCode = DEPT_CODES[dept.slug] || dept.slug.slice(0, 2).toUpperCase();
+      const subCode = (SUBCAT_CODES[dept.slug] && SUBCAT_CODES[dept.slug][category]) || 'ALT';
+      const prefix = `${deptCode}-${subCode}-`;
+      let max = 0;
+      dept.products.forEach(p => {
+        if (p.code && p.code.startsWith(prefix)){
+          const n = parseInt(p.code.slice(prefix.length), 10);
+          if (!isNaN(n) && n > max) max = n;
+        }
+      });
+      return prefix + String(max + 1).padStart(3, '0');
+    }
+
     deptSelect.innerHTML = departments.map(d => `<option value="${d.slug}">${d.title}</option>`).join('');
     let currentSlug = departments[0].slug;
     let pendingImage = null;
@@ -135,7 +173,7 @@
             ${imageHtml}
           </div>
           <div class="product-body">
-            <div class="product-cat">${escapeHtml(p.category)}</div>
+            <div class="product-cat">${escapeHtml(p.category)}${p.code ? ' · ' + escapeHtml(p.code) : ''}</div>
             <div class="product-name">${escapeHtml(p.name)}</div>
             ${variantHtml}
             <div class="product-price">${formatPrice(p.price)}</div>
@@ -311,13 +349,17 @@
 
       if (editingId){
         const p = dept.products.find(x => x.id === editingId);
+        const categoryChanged = p.category !== category;
         Object.assign(p, { name, category, price, availability, image: pendingImage, variants });
+        if (categoryChanged || !p.code) p.code = generateCode(dept, category);
         showToast('Prodotto aggiornato.');
       } else {
-        dept.products.unshift({
+        const newProduct = {
           id: 'p' + (nextIdByDept[dept.slug]++),
           name, category, price, availability, image: pendingImage, variants
-        });
+        };
+        newProduct.code = generateCode(dept, category);
+        dept.products.unshift(newProduct);
         showToast('Prodotto aggiunto.');
       }
       dept.products = sortBySubcategory(dept.products, dept.subcategories);

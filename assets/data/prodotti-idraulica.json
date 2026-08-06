@@ -1,5 +1,6 @@
 [
   {
+    "code": "ID-PRC-001",
     "name": "Press control FLUXY",
     "category": "Press control",
     "price": "31,00",
@@ -20,6 +21,7 @@
     }
   },
   {
+    "code": "ID-DOC-001",
     "name": "Flessibile per doccia acciaio",
     "category": "Accessori doccia",
     "price": "3,90",
