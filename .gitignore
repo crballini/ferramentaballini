@@ -1,11 +1,2 @@
 # File principali dell'area riservata
 area-gestione.html
-
-# File gestione admin
-admin-data.js
-admin.css
-admin.js
-
-# File script py e file excel
-aggiorna_catalogo-v4.py
-catalogo_template-v4.xlsx
