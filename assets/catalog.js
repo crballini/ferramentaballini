@@ -16,6 +16,14 @@
 (function(){
   const cfg = window.CATALOG_CONFIG || { subcategories:[], productsUrl:'', categoryIcon:'' };
 
+  // I percorsi "image" dentro i file JSON sono scritti relativi alla radice
+  // del sito (es. "assets/img/elettrodomestici/xxx.jpg"). Se questa pagina
+  // vive in una sottocartella (es. reparti/reparto-xxx.html), il browser
+  // risolverebbe quel percorso in modo sbagliato. Calcoliamo il prefisso
+  // corretto a partire da productsUrl, che è già configurato correttamente
+  // per ogni pagina.
+  const basePrefix = (cfg.productsUrl || '').replace(/assets\/data\/.*$/, '');
+
   function sortBySubcategory(list, subcategories){
     return list
       .map((p, i) => ({ p, i }))
@@ -94,7 +102,7 @@
   function renderCard(p){
     const availLabel = AVAILABILITY_LABELS[p.availability] || p.availability;
     const imageHtml = p.image
-      ? `<img src="${p.image}" alt="${escapeHtml(p.name)}">`
+      ? `<img src="${basePrefix}${p.image}" alt="${escapeHtml(p.name)}">`
       : iconSvg();
     const variantHtml = (p.variants && p.variants.options && p.variants.options.length)
       ? `<div class="product-variant"><label>${escapeHtml(p.variants.label)}</label><select class="variant-select">${p.variants.options.map(o => `<option value="${escapeHtml(o.price)}">${escapeHtml(o.value)}</option>`).join('')}</select></div>`
