@@ -4,6 +4,7 @@ import os
 import re
 import argparse
 import copy
+import shutil
 import openpyxl
 import urllib.request
 import urllib.parse
@@ -33,6 +34,18 @@ REPARTO_PREFIX = {
     'Utensili manuali': 'UM',
     'Vernici e colori': 'VC',
     'Vario': 'VA'
+}
+
+# Cartelle "Web-Safe" per le immagini dei singoli reparti (senza accenti o spazi)
+REPARTO_DIR_NAME = {
+    'Edilizia e ferramenta': 'edilizia-ferramenta',
+    'Elettricità': 'elettricita',
+    'Elettrodomestici': 'elettrodomestici',
+    'Elettroutensili': 'elettroutensili',
+    'Idraulica': 'idraulica',
+    'Utensili manuali': 'utensili-manuali',
+    'Vernici e colori': 'vernici-colori',
+    'Vario': 'vario'
 }
 
 # Mappatura Sottocategorie note per mantenere la coerenza dei codici (3 lettere)
@@ -217,8 +230,11 @@ def get_simplified_image_value(image_path, code, reparto_name):
     
     # Sostituiamo backslash con forward slash per coerenza
     normalized_path = image_path.replace('\\\\', '/')
-    standard_prefix = f"assets/img/{reparto_name}/"
+    safe_reparto_dir = REPARTO_DIR_NAME.get(reparto_name, 'vario')
+    standard_prefix = f"assets/img/{safe_reparto_dir}/"
+    old_standard_prefix = f"assets/img/{reparto_name}/"
     
+    # Se è nella nuova cartella web-safe
     if normalized_path.startswith(standard_prefix):
         filename = os.path.basename(normalized_path)
         base, ext = os.path.splitext(filename)
@@ -226,8 +242,66 @@ def get_simplified_image_value(image_path, code, reparto_name):
             return code # Scrive solo il codice prodotto! (es. 'ED-FRI-001')
         else:
             return filename # Scrive solo il nome file! (es. 'trapano.jpg')
+    # Se era nella vecchia cartella intera
+    elif normalized_path.startswith(old_standard_prefix):
+        filename = os.path.basename(normalized_path)
+        base, ext = os.path.splitext(filename)
+        if base == code:
+            return code
+        else:
+            return filename
     else:
         return image_path # Mantiene il percorso originale se è esterno
+
+def compress_and_convert_to_webp(file_path, max_width=800, quality=80):
+    """
+    Ottimizza un'immagine: la converte in WebP, la ridimensiona se supera max_width 
+    e riduce il peso del file per velocizzare il caricamento del sito web.
+    """
+    try:
+        from PIL import Image
+        if not os.path.exists(file_path):
+            return file_path
+        
+        base, ext = os.path.splitext(file_path)
+        ext_lower = ext.lower().lstrip('.')
+        
+        # Ignora file non grafici o formati vettoriali/animati
+        if ext_lower in ['svg', 'gif']:
+            return file_path
+            
+        with Image.open(file_path) as img:
+            # Rileva e converte formati non RGB (es. CMYK)
+            if img.mode in ('RGBA', 'LA') and ext_lower != 'png' and ext_lower != 'webp':
+                # mantiene la trasparenza se salviamo in webp
+                pass
+            elif img.mode != 'RGB' and img.mode != 'RGBA':
+                img = img.convert('RGB')
+                
+            # Ridimensionamento proporzionale intelligente
+            width, height = img.size
+            if width > max_width:
+                ratio = max_width / float(width)
+                new_height = int(height * ratio)
+                img = img.resize((max_width, new_height), Image.Resampling.LANCZOS)
+                print(f"     [INFO] Ridimensionata immagine da {width}x{height}px a {max_width}x{new_height}px")
+            
+            webp_path = f"{base}.webp"
+            img.save(webp_path, 'WEBP', quality=quality)
+            print(f"     [OK] Immagine compressa salvata come WebP: '{webp_path}'")
+            
+            # Se il file originale non era un webp, rimuoviamolo per non sprecare spazio su GitHub
+            if ext_lower != 'webp' and os.path.exists(file_path):
+                try:
+                    os.remove(file_path)
+                    print(f"     [INFO] Rimosso file originale non ottimizzato: '{file_path}'")
+                except Exception as e:
+                    print(f"     [Nota] Impossibile rimuovere il file originale: {e}")
+                    
+            return webp_path
+    except Exception as e:
+        print(f"     [ERRORE] Errore durante l'ottimizzazione dell'immagine: {e}")
+        return file_path
 
 def download_image_from_url(url, output_dir, code):
     # Crea la directory se non esiste
@@ -244,8 +318,8 @@ def download_image_from_url(url, output_dir, code):
         
     filename = f"{code}.{ext}"
     file_path = os.path.join(output_dir, filename)
-    reparto_dir = os.path.basename(output_dir)
-    rel_path = f"assets/img/{reparto_dir}/{filename}"
+    reparto_dir_slug = os.path.basename(output_dir)
+    rel_path = f"assets/img/{reparto_dir_slug}/{filename}"
     
     try:
         print(f"  -> Tentativo di download da: {url} ...")
@@ -265,21 +339,46 @@ def download_image_from_url(url, output_dir, code):
                         ext = new_ext
                         filename = f"{code}.{ext}"
                         file_path = os.path.join(output_dir, filename)
-                        rel_path = f"assets/img/{reparto_dir}/{filename}"
+                        rel_path = f"assets/img/{reparto_dir_slug}/{filename}"
             
             with open(file_path, 'wb') as out_file:
                 out_file.write(response.read())
             
             print(f"     [OK] Immagine scaricata e salvata in '{rel_path}'")
-            return rel_path
+            
+            # Ottimizza l'immagine scaricata convertendola in WebP
+            optimized_path = compress_and_convert_to_webp(file_path)
+            # Sostituiamo gli slash per sicurezza web
+            optimized_rel_path = optimized_path.replace('\\', '/')
+            if '/workspace/scratch/manutenzione/' in optimized_rel_path:
+                optimized_rel_path = optimized_rel_path.replace('/workspace/scratch/manutenzione/', '')
+            
+            return optimized_rel_path
     except Exception as e:
         print(f"     [ERRORE] Impossibile scaricare l'immagine da Internet: {e}")
         if "Name or service not known" in str(e) or "Temporary failure in name resolution" in str(e) or "timed out" in str(e).lower() or "connection refused" in str(e).lower():
             print("     (Nota: Se ti trovi in un ambiente offline come il sandbox di test, questo errore è normale. Sul tuo PC Windows funzionerà correttamente!)")
         # In caso di errore di rete, ritorniamo comunque il percorso relativo ipotizzato
-        # in modo che il JSON rimanga coerente con la futura presenza del file.
-        print(f"     [FALLBACK] Verrà comunque associato il percorso locale: '{rel_path}'")
-        return rel_path
+        # in formato .webp poiché verrà creata così una volta scaricata dal tuo PC
+        hypothetical_rel_path = f"assets/img/{reparto_dir_slug}/{code}.webp"
+        print(f"     [FALLBACK] Verrà comunque associato il percorso ottimizzato: '{hypothetical_rel_path}'")
+        return hypothetical_rel_path
+
+def save_json_with_backup(data, file_path):
+    """
+    Salva i dati in formato JSON creando prima un file di backup (.bak) di sicurezza.
+    """
+    try:
+        if os.path.exists(file_path):
+            backup_path = file_path + ".bak"
+            shutil.copy2(file_path, backup_path)
+        
+        with open(file_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, indent=2, ensure_ascii=False)
+        return True
+    except Exception as e:
+        print(f"Errore durante il salvataggio o backup del file {file_path}: {e}")
+        return False
 
 def import_excel_to_json(excel_file, data_dir):
     print(f"Lettura file Excel: {excel_file}...")
@@ -376,55 +475,61 @@ def import_excel_to_json(excel_file, data_dir):
                 elif image_val_str and image_val_str != 'nan' and image_val_str != '':
                     # SE E' UN URL WEB! (http:// o https://)
                     if image_val_str.startswith('http://') or image_val_str.startswith('https://'):
-                        reparto_dir = sheet_name
-                        output_dir = os.path.join('assets', 'img', reparto_dir)
-                        # Se siamo nel sandbox, modifichiamo il percorso di destinazione per farlo finire in /workspace/scratch/manutenzione/assets/img/
+                        reparto_dir_slug = REPARTO_DIR_NAME.get(sheet_name, 'vario')
+                        output_dir = os.path.join('assets', 'img', reparto_dir_slug)
+                        # Gestione sandbox
                         if not os.path.exists('assets') and os.path.exists('/workspace/scratch/manutenzione/assets'):
-                            output_dir = os.path.join('/workspace/scratch/manutenzione', 'assets', 'img', reparto_dir)
+                            output_dir = os.path.join('/workspace/scratch/manutenzione', 'assets', 'img', reparto_dir_slug)
                         
                         downloaded_path = download_image_from_url(image_val_str, output_dir, code)
                         if downloaded_path:
                             image_path = downloaded_path
                     # Se non contiene slash/backslash, è un nome file o codice semplificato!
                     elif '/' not in image_val_str and '\\\\' not in image_val_str:
-                        reparto_dir = sheet_name
+                        reparto_dir_slug = REPARTO_DIR_NAME.get(sheet_name, 'vario')
                         if '.' in image_val_str:
-                            # Ha già l'estensione (es. 'ED-FRI-001.jpg')
-                            image_path = f"assets/img/{reparto_dir}/{image_val_str}"
+                            # Ha già l'estensione (es. 'ED-FRI-001.webp')
+                            image_path = f"assets/img/{reparto_dir_slug}/{image_val_str}"
                         else:
                             # È solo il codice (es. 'ED-FRI-001')
                             found_path = None
-                            local_reparto_dir = os.path.join('assets', 'img', reparto_dir)
+                            local_reparto_dir = os.path.join('assets', 'img', reparto_dir_slug)
                             if not os.path.exists('assets') and os.path.exists('/workspace/scratch/manutenzione/assets'):
-                                local_reparto_dir = os.path.join('/workspace/scratch/manutenzione', 'assets', 'img', reparto_dir)
+                                local_reparto_dir = os.path.join('/workspace/scratch/manutenzione', 'assets', 'img', reparto_dir_slug)
                             if os.path.exists(local_reparto_dir):
-                                for ext in ['.jpg', '.png', '.webp', '.jpeg', '.JPG', '.PNG', '.WEBP']:
+                                for ext in ['.webp', '.jpg', '.png', '.jpeg', '.WEBP', '.JPG', '.PNG']:
                                     test_file = f"{image_val_str}{ext}"
                                     if os.path.exists(os.path.join(local_reparto_dir, test_file)):
-                                        found_path = f"assets/img/{reparto_dir}/{test_file}"
+                                        found_path = f"assets/img/{reparto_dir_slug}/{test_file}"
                                         break
                             if found_path:
                                 image_path = found_path
                             else:
-                                # Default a .jpg se non trovato
-                                image_path = f"assets/img/{reparto_dir}/{image_val_str}.jpg"
+                                # Default a .webp se non trovato (essendo il formato standard di v11)
+                                image_path = f"assets/img/{reparto_dir_slug}/{image_val_str}.webp"
                     else:
-                        # È un percorso intero, lo usiamo direttamente
-                        image_path = image_val_str
+                        # È un percorso intero, normalizziamo il nome della cartella reparto per sicurezza web-safe
+                        normalized_path = image_val_str.replace('\\\\', '/').replace('\\', '/')
+                        for old_rep, new_slug in REPARTO_DIR_NAME.items():
+                            old_pattern = f"assets/img/{old_rep}/"
+                            if normalized_path.startswith(old_pattern):
+                                normalized_path = normalized_path.replace(old_pattern, f"assets/img/{new_slug}/")
+                                break
+                        image_path = normalized_path
             
             # Se la cella dell'immagine era vuota, proviamo ad auto-associarla
             # se esiste un file con il codice prodotto nella cartella corretta!
             if not image_path:
-                reparto_dir = sheet_name
-                local_reparto_dir = os.path.join('assets', 'img', reparto_dir)
+                reparto_dir_slug = REPARTO_DIR_NAME.get(sheet_name, 'vario')
+                local_reparto_dir = os.path.join('assets', 'img', reparto_dir_slug)
                 found_path = None
                 if not os.path.exists('assets') and os.path.exists('/workspace/scratch/manutenzione/assets'):
-                    local_reparto_dir = os.path.join('/workspace/scratch/manutenzione', 'assets', 'img', reparto_dir)
+                    local_reparto_dir = os.path.join('/workspace/scratch/manutenzione', 'assets', 'img', reparto_dir_slug)
                 if os.path.exists(local_reparto_dir):
-                    for ext in ['.jpg', '.png', '.webp', '.jpeg', '.JPG', '.PNG', '.WEBP']:
+                    for ext in ['.webp', '.jpg', '.png', '.jpeg', '.WEBP', '.JPG', '.PNG']:
                         test_file = f"{code}{ext}"
                         if os.path.exists(os.path.join(local_reparto_dir, test_file)):
-                            found_path = f"assets/img/{reparto_dir}/{test_file}"
+                            found_path = f"assets/img/{reparto_dir_slug}/{test_file}"
                             break
                 if found_path:
                     image_path = found_path
@@ -446,13 +551,9 @@ def import_excel_to_json(excel_file, data_dir):
                 
             products_list.append(product_obj)
             
-        # Salva in formato JSON
-        try:
-            with open(json_path, 'w', encoding='utf-8') as f:
-                json.dump(products_list, f, indent=2, ensure_ascii=False)
+        # Salva in formato JSON con backup di sicurezza
+        if save_json_with_backup(products_list, json_path):
             print(f"File JSON aggiornato con successo: '{json_path}' ({len(products_list)} prodotti)")
-        except Exception as e:
-            print(f"Errore nel salvataggio del file {json_path}: {e}")
 
 def export_json_to_excel(excel_file, data_dir):
     print(f"Inizio esportazione dei file JSON da '{data_dir}' verso l'Excel '{excel_file}'...")
@@ -460,14 +561,14 @@ def export_json_to_excel(excel_file, data_dir):
     default_sheet = wb.active
     wb.remove(default_sheet)
     
-    columns = [
-        'Codice Prodotto',
-        'Nome Prodotto',
-        'Sottocategoria',
-        'Prezzo Base',
-        'Disponibilità',
-        'Immagine',
-        'Varianti'
+    columns = [\
+        'Codice Prodotto',\
+        'Nome Prodotto',\
+        'Sottocategoria',\
+        'Prezzo Base',\
+        'Disponibilità',\
+        'Immagine',\
+        'Varianti'\
     ]
     
     # Stili
@@ -619,25 +720,137 @@ def export_json_to_excel(excel_file, data_dir):
     except Exception as e:
         print(f"Errore nel salvataggio dell'Excel: {e}")
 
+def run_global_optimization(data_dir, img_base_dir):
+    """
+    Scansiona tutte le cartelle di immagini reali, rinomina le directory dei reparti
+    con nomi web-safe (es. 'Elettricità' -> 'elettricita'), converte tutte le immagini
+    presenti in WebP compresso (risparmiando spazio su disco/GitHub e velocizzando il sito),
+    e aggiorna tutti i percorsi di riferimento nei file JSON del database.
+    """
+    print("\n==================================================")
+    print("      AVVIO OTTIMIZZAZIONE GLOBALE DEL SITO")
+    print("==================================================")
+    
+    if not os.path.exists(img_base_dir):
+        print(f"[ERRORE] La cartella immagini '{img_base_dir}' non esiste.")
+        return
+        
+    # Fase 1: Rinomina cartelle reparti con accenti/spazi in nomi Web-Safe
+    print("\n[Fase 1] Controllo e migrazione nomi cartelle in formato Web-Safe...")
+    for old_rep, clean_slug in REPARTO_DIR_NAME.items():
+        old_path = os.path.join(img_base_dir, old_rep)
+        new_path = os.path.join(img_base_dir, clean_slug)
+        
+        # Se esiste la vecchia cartella e non è ancora la nuova
+        if os.path.exists(old_path) and old_rep != clean_slug:
+            # Se esiste già la nuova cartella, unisci i file
+            if os.path.exists(new_path):
+                print(f"  -> Unione contenuti da '{old_path}' verso '{new_path}'...")
+                for file_name in os.listdir(old_path):
+                    shutil.move(os.path.join(old_path, file_name), os.path.join(new_path, file_name))
+                os.rmdir(old_path)
+            else:
+                print(f"  -> Ridenominazione cartella: '{old_path}' -> '{new_path}'...")
+                os.rename(old_path, new_path)
+    
+    # Fase 2: Converte tutte le immagini locali in WebP e le comprime
+    print("\n[Fase 2] Compressione e conversione di tutte le immagini in WebP...")
+    for reparto_slug in REPARTO_DIR_NAME.values():
+        reparto_path = os.path.join(img_base_dir, reparto_slug)
+        if os.path.exists(reparto_path):
+            print(f"  Analisi immagini in '{reparto_path}'...")
+            for filename in os.listdir(reparto_path):
+                file_path = os.path.join(reparto_path, filename)
+                if os.path.isfile(file_path):
+                    _, ext = os.path.splitext(filename)
+                    if ext.lower() in ['.jpg', '.jpeg', '.png']:
+                        compress_and_convert_to_webp(file_path)
+                        
+    # Fase 3: Aggiorna tutti i riferimenti nei file JSON
+    print("\n[Fase 3] Aggiornamento dei database JSON con i nuovi percorsi Web-Safe ed estensioni .webp...")
+    for reparto_name, json_filename in REPARTO_MAP.items():
+        json_path = os.path.join(data_dir, json_filename)
+        if os.path.exists(json_path):
+            print(f"  Aggiornamento '{json_filename}'...")
+            try:
+                with open(json_path, 'r', encoding='utf-8') as f:
+                    products = json.load(f)
+                
+                updated = False
+                for prod in products:
+                    img_path = prod.get('image', '')
+                    if img_path and not img_path.startswith('data:') and not img_path.startswith('http'):
+                        # Normalizza gli slash
+                        normalized = img_path.replace('\\\\', '/').replace('\\', '/')
+                        old_val = normalized
+                        
+                        # 1. Sostituisce i vecchi nomi dei reparti con i nuovi slug web-safe
+                        for old_rep, clean_slug in REPARTO_DIR_NAME.items():
+                            old_pattern = f"assets/img/{old_rep}/"
+                            if normalized.startswith(old_pattern):
+                                normalized = normalized.replace(old_pattern, f"assets/img/{clean_slug}/")
+                                break
+                        
+                        # 2. Sostituisce l'estensione dell'immagine con .webp se è stata convertita
+                        base, ext = os.path.splitext(normalized)
+                        if ext.lower() in ['.jpg', '.jpeg', '.png']:
+                            # Verifichiamo se il file .webp esiste effettivamente sul disco prima di aggiornare il JSON
+                            # (se siamo in locale o nel sandbox)
+                            rel_check_path = normalized.replace('assets/', '') # img/...
+                            absolute_check_dir = os.path.join(img_base_dir, REPARTO_DIR_NAME.get(reparto_name, 'vario'))
+                            code = prod.get('code', '')
+                            
+                            webp_filename = f"{code}.webp" if code else f"{os.path.basename(base)}.webp"
+                            webp_full_path = os.path.join(absolute_check_dir, webp_filename)
+                            
+                            # Se esiste il file .webp, aggiorniamo il riferimento nel JSON
+                            if os.path.exists(webp_full_path) or not os.path.exists(img_base_dir):
+                                normalized = f"assets/img/{REPARTO_DIR_NAME.get(reparto_name, 'vario')}/{webp_filename}"
+                        
+                        if normalized != old_val:
+                            prod['image'] = normalized
+                            updated = True
+                
+                if updated:
+                    save_json_with_backup(products, json_path)
+                    print(f"    [OK] File '{json_filename}' aggiornato e ottimizzato!")
+            except Exception as e:
+                print(f"    [ERRORE] Impossibile aggiornare il file {json_filename}: {e}")
+                
+    print("\n==================================================")
+    print("  OTTIMIZZAZIONE COMPLETATA CON SUCCESSO! 🎉")
+    print("  Ora tutte le immagini del tuo sito sono WebP")
+    print("  e le cartelle dei reparti sono web-safe (no accenti/spazi).")
+    print("==================================================")
+
 def main():
-    parser = argparse.ArgumentParser(description="Script di Sincronizzazione Catalogo Excel <-> JSON v10")
+    parser = argparse.ArgumentParser(description="Script di Sincronizzazione ed Ottimizzazione Catalogo Excel <-> JSON v11")
     parser.add_argument('--export', action='store_true', help="Esporta i file JSON correnti per popolare l'Excel")
+    parser.add_argument('--optimize-all', action='store_true', help="Ottimizza tutte le cartelle immagini e aggiorna i database a WebP")
     args = parser.parse_args()
     
     excel_file = 'catalogo_template.xlsx'
     
-    # Se siamo nel sandbox, usiamo i percorsi corretti
-    if not os.path.exists(excel_file) and os.path.exists('/workspace/scratch/catalogo_template-v10.xlsx'):
-        excel_file = '/workspace/scratch/catalogo_template-v10.xlsx'
+    # Se siamo nel sandbox, usiamo i percorsi corretti di test
+    if not os.path.exists(excel_file) and os.path.exists('/workspace/scratch/catalogo_template-v11.xlsx'):
+        excel_file = '/workspace/scratch/catalogo_template-v11.xlsx'
     elif not os.path.exists(excel_file):
-        excel_file = '/workspace/scratch/catalogo_template-v10.xlsx'
+        excel_file = '/workspace/scratch/catalogo_template-v11.xlsx'
         
     data_dir = 'assets/data'
+    img_base_dir = os.path.join('assets', 'img')
+    
     if not os.path.exists(data_dir):
         data_dir = '/workspace/scratch/manutenzione/assets/data'
+        img_base_dir = '/workspace/scratch/manutenzione/assets/img'
         os.makedirs(data_dir, exist_ok=True)
+        os.makedirs(img_base_dir, exist_ok=True)
         
-    if args.export:
+    if args.optimize_all:
+        run_global_optimization(data_dir, img_base_dir)
+        # Dopo l'ottimizzazione globale, rigeneriamo l'Excel in automatico per mantenerlo allineato!
+        export_json_to_excel(excel_file, data_dir)
+    elif args.export:
         export_json_to_excel(excel_file, data_dir)
     else:
         import_excel_to_json(excel_file, data_dir)
