@@ -5,7 +5,7 @@
     "category": "Frigoriferi e congelatori",
     "price": 429.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-FRI-001.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-001.jpg"
   },
   {
     "code": "ED-FRI-002",
@@ -13,7 +13,7 @@
     "category": "Frigoriferi e congelatori",
     "price": 419.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-FRI-002.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-002.jpg"
   },
   {
     "code": "ED-FRI-003",
@@ -21,7 +21,7 @@
     "category": "Frigoriferi e congelatori",
     "price": 299.0,
     "availability": "disponibile",
-    "image": "assets/img/elettrodomestici/ED-FRI-003.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-003.jpg"
   },
   {
     "code": "ED-FRI-004",
@@ -29,7 +29,7 @@
     "category": "Frigoriferi e congelatori",
     "price": 299.0,
     "availability": "disponibile",
-    "image": "assets/img/elettrodomestici/ED-FRI-004.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-004.jpg"
   },
   {
     "code": "ED-FRI-005",
@@ -37,7 +37,7 @@
     "category": "Frigoriferi e congelatori",
     "price": 149.0,
     "availability": "disponibile",
-    "image": "assets/img/elettrodomestici/ED-FRI-005.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-005.jpg"
   },
   {
     "code": "ED-FRI-006",
@@ -45,7 +45,7 @@
     "category": "Frigoriferi e congelatori",
     "price": 149.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-FRI-006.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-006.jpg"
   },
   {
     "code": "ED-FRI-007",
@@ -53,7 +53,7 @@
     "category": "Frigoriferi e congelatori",
     "price": 469.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-FRI-007.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-007.jpg"
   },
   {
     "code": "ED-FRI-008",
@@ -61,7 +61,7 @@
     "category": "Frigoriferi e congelatori",
     "price": 269.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-FRI-008.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-008.jpg"
   },
   {
     "code": "ED-FRI-009",
@@ -69,7 +69,7 @@
     "category": "Frigoriferi e congelatori",
     "price": 219.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-FRI-009.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-009.jpg"
   },
   {
     "code": "ED-LAV-001",
@@ -77,7 +77,7 @@
     "category": "Lavatrici e asciugatrici",
     "price": 619.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-LAV-001.webp"
+    "image": "assets/img/elettrodomestici/ED-LAV-001.jpg"
   },
   {
     "code": "ED-LAV-002",
@@ -85,7 +85,7 @@
     "category": "Lavatrici e asciugatrici",
     "price": 339.0,
     "availability": "disponibile",
-    "image": "assets/img/elettrodomestici/ED-LAV-002.webp"
+    "image": "assets/img/elettrodomestici/ED-LAV-002.jpg"
   },
   {
     "code": "ED-LAV-003",
@@ -93,7 +93,7 @@
     "category": "Lavatrici e asciugatrici",
     "price": 269.0,
     "availability": "disponibile",
-    "image": "assets/img/elettrodomestici/ED-LAV-003.webp"
+    "image": "assets/img/elettrodomestici/ED-LAV-003.jpg"
   },
   {
     "code": "ED-LAV-004",
@@ -101,7 +101,7 @@
     "category": "Lavatrici e asciugatrici",
     "price": 569.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-LAV-004.webp"
+    "image": "assets/img/elettrodomestici/ED-LAV-004.jpg"
   },
   {
     "code": "ED-LAV-005",
@@ -109,7 +109,7 @@
     "category": "Lavatrici e asciugatrici",
     "price": 449.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-LAV-005.webp"
+    "image": "assets/img/elettrodomestici/ED-LAV-005.jpg"
   },
   {
     "code": "ED-TEL-001",
@@ -117,7 +117,7 @@
     "category": "Televisori",
     "price": 599.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-TEL-001.webp"
+    "image": "assets/img/elettrodomestici/ED-TEL-001.jpg"
   },
   {
     "code": "ED-TEL-002",
@@ -125,7 +125,7 @@
     "category": "Televisori",
     "price": 269.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-TEL-002.webp"
+    "image": "assets/img/elettrodomestici/ED-TEL-002.jpg"
   },
   {
     "code": "ED-TEL-003",
@@ -133,7 +133,7 @@
     "category": "Televisori",
     "price": 149.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-TEL-003.webp"
+    "image": "assets/img/elettrodomestici/ED-TEL-003.jpg"
   },
   {
     "code": "ED-PIC-001",
@@ -141,7 +141,7 @@
     "category": "Piccoli elettrodomestici",
     "price": 239.0,
     "availability": "disponibile",
-    "image": "assets/img/elettrodomestici/ED-PIC-001.webp"
+    "image": "assets/img/elettrodomestici/ED-PIC-001.jpg"
   },
   {
     "code": "ED-INC-001",
@@ -149,7 +149,7 @@
     "category": "elettrodomestici da incasso",
     "price": 469.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-INC-001.webp"
+    "image": "assets/img/elettrodomestici/ED-INC-001.jpg"
   },
   {
     "code": "ED-INC-002",
@@ -157,7 +157,7 @@
     "category": "elettrodomestici da incasso",
     "price": 369.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettrodomestici/ED-INC-002.webp"
+    "image": "assets/img/elettrodomestici/ED-INC-002.jpg"
   },
   {
     "code": "ED-FRI-010",
@@ -165,6 +165,6 @@
     "category": "Frigoriferi e congelatori",
     "price": 118.0,
     "availability": "disponibile",
-    "image": "assets/img/elettrodomestici/ED-FRI-010.webp"
+    "image": "assets/img/elettrodomestici/ED-FRI-010.jpg"
   }
 ]

@@ -5,7 +5,7 @@
     "category": "Articoli per la casa",
     "price": 159.0,
     "availability": "disponibile",
-    "image": "assets/img/vario/VA-CAS-001.webp"
+    "image": "assets/img/vario/VA-CAS-001.jpg"
   },
   {
     "code": "VA-CAS-002",
@@ -13,7 +13,7 @@
     "category": "Articoli per la casa",
     "price": 13.9,
     "availability": "disponibile",
-    "image": "assets/img/vario/VA-CAS-002.webp"
+    "image": "assets/img/vario/VA-CAS-002.jpg"
   },
   {
     "code": "VA-GIA-001",
@@ -21,7 +21,7 @@
     "category": "Giardinaggio",
     "price": 0.8,
     "availability": "disponibile",
-    "image": "assets/img/vario/VA-GIA-001.webp"
+    "image": "assets/img/vario/VA-GIA-001.jpg"
   },
   {
     "code": "VA-GIA-002",
@@ -29,7 +29,7 @@
     "category": "Giardinaggio",
     "price": 16.9,
     "availability": "disponibile",
-    "image": "assets/img/vario/VA-GIA-002.webp",
+    "image": "assets/img/vario/VA-GIA-002.jpg",
     "variants": {
       "label": "varianti",
       "options": [
@@ -50,7 +50,7 @@
     "category": "Giardinaggio",
     "price": 5.5,
     "availability": "disponibile",
-    "image": "assets/img/vario/VA-GIA-003.webp"
+    "image": "assets/img/vario/VA-GIA-003.jpg"
   },
   {
     "code": "VA-GIA-004",
@@ -58,7 +58,7 @@
     "category": "Giardinaggio",
     "price": 4.0,
     "availability": "disponibile",
-    "image": "assets/img/vario/VA-GIA-004.webp"
+    "image": "assets/img/vario/VA-GIA-004.jpg"
   },
   {
     "code": "VA-GIA-005",
@@ -66,6 +66,6 @@
     "category": "Giardinaggio",
     "price": 24.9,
     "availability": "disponibile",
-    "image": "assets/img/vario/VA-GIA-005.webp"
+    "image": "assets/img/vario/VA-GIA-005.jpg"
   }
 ]

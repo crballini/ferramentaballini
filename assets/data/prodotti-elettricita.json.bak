@@ -5,7 +5,7 @@
     "category": "Prese e interruttori",
     "price": 22.9,
     "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-PRE-001.webp"
+    "image": "assets/img/elettricita/EL-PRE-001.jpg"
   },
   {
     "code": "EL-ILL-001",
@@ -13,7 +13,7 @@
     "category": "Illuminazione",
     "price": 29.9,
     "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-ILL-001.webp"
+    "image": "assets/img/elettricita/EL-ILL-001.jpg"
   },
   {
     "code": "EL-MUL-001",
@@ -21,7 +21,7 @@
     "category": "Multiprese",
     "price": 9.9,
     "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-MUL-001.webp"
+    "image": "assets/img/elettricita/EL-MUL-001.jpg"
   },
   {
     "code": "EL-MUL-002",
@@ -29,7 +29,7 @@
     "category": "Multiprese",
     "price": 7.9,
     "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-MUL-002.webp"
+    "image": "assets/img/elettricita/EL-MUL-002.jpg"
   },
   {
     "code": "EL-MUL-003",
@@ -37,7 +37,7 @@
     "category": "Multiprese",
     "price": 10.9,
     "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-MUL-003.webp"
+    "image": "assets/img/elettricita/EL-MUL-003.jpg"
   },
   {
     "code": "EL-MUL-004",
@@ -45,6 +45,6 @@
     "category": "Multiprese",
     "price": 12.9,
     "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-MUL-004.webp"
+    "image": "assets/img/elettricita/EL-MUL-004.jpg"
   }
 ]

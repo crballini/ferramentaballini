@@ -5,7 +5,7 @@
     "category": "Trapani e avvitatori",
     "price": 91.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-001.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-001.jpg"
   },
   {
     "code": "EU-TRA-002",
@@ -13,7 +13,7 @@
     "category": "Trapani e avvitatori",
     "price": 36.9,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-002.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-002.jpg"
   },
   {
     "code": "EU-TRA-003",
@@ -21,7 +21,7 @@
     "category": "Trapani e avvitatori",
     "price": 91.9,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-003.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-003.jpg"
   },
   {
     "code": "EU-TRA-004",
@@ -29,7 +29,7 @@
     "category": "Trapani e avvitatori",
     "price": 58.9,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-004.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-004.jpg"
   },
   {
     "code": "EU-TRA-005",
@@ -37,7 +37,7 @@
     "category": "Trapani e avvitatori",
     "price": 25.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-005.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-005.jpg"
   },
   {
     "code": "EU-SEG-001",
@@ -45,7 +45,7 @@
     "category": "Seghe",
     "price": 43.5,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-SEG-001.webp"
+    "image": "assets/img/elettroutensili/EU-SEG-001.jpg"
   },
   {
     "code": "EU-LEV-001",
@@ -53,7 +53,7 @@
     "category": "Levigatrici",
     "price": 75.9,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-LEV-001.webp"
+    "image": "assets/img/elettroutensili/EU-LEV-001.jpg"
   },
   {
     "code": "EU-LEV-002",
@@ -61,7 +61,7 @@
     "category": "Levigatrici",
     "price": 45.9,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-LEV-002.webp"
+    "image": "assets/img/elettroutensili/EU-LEV-002.jpg"
   },
   {
     "code": "EU-LEV-003",
@@ -69,7 +69,7 @@
     "category": "Levigatrici",
     "price": 28.5,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-LEV-003.webp"
+    "image": "assets/img/elettroutensili/EU-LEV-003.jpg"
   },
   {
     "code": "EU-SME-001",
@@ -77,7 +77,7 @@
     "category": "Smerigliatrici",
     "price": 41.9,
     "availability": "disponibile",
-    "image": "assets/img/elettroutensili/EU-SME-001.webp"
+    "image": "assets/img/elettroutensili/EU-SME-001.jpg"
   },
   {
     "code": "EU-SME-002",
@@ -85,7 +85,7 @@
     "category": "Smerigliatrici",
     "price": 104.9,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-SME-002.webp"
+    "image": "assets/img/elettroutensili/EU-SME-002.jpg"
   },
   {
     "code": "EU-BAT-001",
@@ -93,7 +93,7 @@
     "category": "Batterie e caricabatterie",
     "price": 36.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-BAT-001.webp",
+    "image": "assets/img/elettroutensili/EU-BAT-001.jpg",
     "variants": {
       "label": "varianti",
       "options": [
@@ -114,7 +114,7 @@
     "category": "Batterie e caricabatterie",
     "price": 22.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-BAT-002.webp"
+    "image": "assets/img/elettroutensili/EU-BAT-002.jpg"
   },
   {
     "code": "EU-ALT-001",
@@ -122,7 +122,7 @@
     "category": "Altro",
     "price": 91.5,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-ALT-001.webp"
+    "image": "assets/img/elettroutensili/EU-ALT-001.jpg"
   },
   {
     "code": "EU-ALT-002",
@@ -130,6 +130,6 @@
     "category": "Altro",
     "price": 21.0,
     "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-ALT-002.webp"
+    "image": "assets/img/elettroutensili/EU-ALT-002.jpg"
   }
 ]

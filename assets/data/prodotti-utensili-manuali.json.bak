@@ -5,7 +5,7 @@
     "category": "Chiavi",
     "price": 5.0,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-CHI-001.webp"
+    "image": "assets/img/utensili-manuali/UM-CHI-001.jpg"
   },
   {
     "code": "UM-CHI-002",
@@ -13,7 +13,7 @@
     "category": "Chiavi",
     "price": 5.3,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-CHI-002.webp"
+    "image": "assets/img/utensili-manuali/UM-CHI-002.jpg"
   },
   {
     "code": "UM-CAC-001",
@@ -21,7 +21,7 @@
     "category": "Cacciaviti e bit",
     "price": 2.1,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-CAC-001.webp",
+    "image": "assets/img/utensili-manuali/UM-CAC-001.jpg",
     "variants": {
       "label": "varianti",
       "options": [
@@ -42,7 +42,7 @@
     "category": "Cacciaviti e bit",
     "price": 1.8,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-CAC-002.webp",
+    "image": "assets/img/utensili-manuali/UM-CAC-002.jpg",
     "variants": {
       "label": "varianti",
       "options": [
@@ -67,7 +67,7 @@
     "category": "Cacciaviti e bit",
     "price": 1.8,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-CAC-003.webp",
+    "image": "assets/img/utensili-manuali/UM-CAC-003.jpg",
     "variants": {
       "label": "varianti",
       "options": [
@@ -100,7 +100,7 @@
     "category": "Pinze e tronchesi",
     "price": 6.8,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-PIN-001.webp"
+    "image": "assets/img/utensili-manuali/UM-PIN-001.jpg"
   },
   {
     "code": "UM-PIN-002",
@@ -108,7 +108,7 @@
     "category": "Pinze e tronchesi",
     "price": 7.6,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-PIN-002.webp"
+    "image": "assets/img/utensili-manuali/UM-PIN-002.jpg"
   },
   {
     "code": "UM-MET-001",
@@ -116,7 +116,7 @@
     "category": "Metri e livelle",
     "price": 14.0,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-MET-001.webp"
+    "image": "assets/img/utensili-manuali/UM-MET-001.jpg"
   },
   {
     "code": "UM-TAG-001",
@@ -124,7 +124,7 @@
     "category": "Taglio",
     "price": 4.4,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-TAG-001.webp"
+    "image": "assets/img/utensili-manuali/UM-TAG-001.jpg"
   },
   {
     "code": "UM-ALT-001",
@@ -132,7 +132,7 @@
     "category": "Altro",
     "price": 15.0,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-ALT-001.webp"
+    "image": "assets/img/utensili-manuali/UM-ALT-001.jpg"
   },
   {
     "code": "UM-ALT-002",
@@ -140,7 +140,7 @@
     "category": "Altro",
     "price": 4.5,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-ALT-002.webp"
+    "image": "assets/img/utensili-manuali/UM-ALT-002.jpg"
   },
   {
     "code": "UM-TAG-002",
@@ -148,7 +148,7 @@
     "category": "Taglio",
     "price": 3.6,
     "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-TAG-002.webp",
+    "image": "assets/img/Utensili manuali/UM-TAG-002.jpg",
     "variants": {
       "label": "varianti",
       "options": [
