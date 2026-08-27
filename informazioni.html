@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordinazione Online e Ritiro in Negozio — Ferramenta Ballini</title>
+    <meta name="description" content="Come prenotare i prodotti online a costo zero e ritirarli di persona pagando comodamente alla cassa con i metodi di pagamento digitali più moderni su Ferramenta Ballini a Fiuggi (FR).">
+    <link rel="canonical" href="https://crballini.github.io/ferramentaballini/informazioni.html">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --paper: #FAF7EC;
+            --light-cream: #e8d6ba;
+            --cream: #EBE3A9;
+            --line: #D8CE9E;
+            --ink: #1A1712;
+            --ink-soft: #55503D;
+            --ink-faint: #8A8468;
+            --yellow: #F1A92C;
+            --yellow-dark: #C9852A;
+            --green: #2B8A3E;
+        }
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+        html{
+            scroll-behavior:smooth;
+        }
+        body{
+            background:var(--paper);
+            color:var(--ink);
+            font-family:'Work Sans', sans-serif;
+            font-size:16px;
+            line-height:1.65;
+            overflow-x:hidden;
+        }
+        h1,h2,h3,h4, .label-font{
+            font-family:'Oswald', sans-serif;
+            text-transform:uppercase;
+            letter-spacing:0.01em;
+            font-weight:500;
+        }
+        .eyebrow{
+            font-family:'Oswald', sans-serif;
+            font-size:0.78rem;
+            font-weight:500;
+            letter-spacing:0.22em;
+            text-transform:uppercase;
+            color:var(--ink-soft);
+            display:block;
+        }
+        .rule{
+            width:52px;
+            height:2px;
+            background:var(--ink);
+            margin:16px 0 20px;
+        }
+        .container{
+            max-width:1160px;
+            margin:0 auto;
+            padding:0 28px;
+        }
+        a{
+            color:inherit;
+            text-decoration:none;
+        }
+        
+        /* ---------- HEADER ---------- */
+        .site-header{
+            position:sticky;
+            top:0;
+            z-index:50;
+            background:var(--paper);
+            border-bottom:1px solid var(--line);
+        }
+        .site-header .container{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding-top:14px;
+            padding-bottom:14px;
+            gap:20px;
+        }
+        .brand img{
+            height:72px;
+            width:auto;
+            display:block;
+            mix-blend-mode:multiply;
+        }
+        nav{
+            display:flex;
+            align-items:center;
+            gap:30px;
+        }
+        nav a{
+            font-family:'Oswald', sans-serif;
+            font-size:0.85rem;
+            font-weight:500;
+            letter-spacing:0.06em;
+            text-transform:uppercase;
+            position:relative;
+            padding-bottom:4px;
+            color:var(--ink);
+        }
+        nav a::after{
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:0;
+            width:0%;
+            height:1px;
+            background:var(--ink);
+            transition:width 0.2s ease;
+        }
+        nav a:hover::after{
+            width:100%;
+        }
+        .call-btn{
+            font-family:'Oswald', sans-serif;
+            font-weight:500;
+            text-transform:uppercase;
+            letter-spacing:0.05em;
+            display:inline-flex;
+            align-items:center;
+            gap:8px;
+            background:var(--ink);
+            color:var(--paper);
+            border:1px solid var(--ink);
+            transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+            cursor:pointer;
+            font-size:0.82rem;
+            padding:10px 20px;
+            white-space:nowrap;
+        }
+        .call-btn:hover{
+            background:var(--yellow);
+            border-color:var(--yellow);
+            color:var(--ink);
+        }
+        .menu-toggle{
+            display:none;
+        }
+
+        /* ---------- PAGE HEAD ---------- */
+        .page-head{
+            padding:50px 0 40px;
+            background:var(--paper);
+            border-bottom:1px solid var(--line);
+        }
+        .breadcrumb{
+            font-size:0.85rem;
+            color:var(--ink-faint);
+            margin-bottom:15px;
+        }
+        .breadcrumb a{
+            transition:color 0.15s ease;
+        }
+        .breadcrumb a:hover{
+            color:var(--ink);
+        }
+        .page-head h1{
+            font-size:clamp(2rem, 4vw, 3rem);
+            line-height:1.1;
+            color:var(--ink);
+            font-weight:500;
+        }
+
+        /* ---------- INFO GRID LAYOUT ---------- */
+        .info-section{
+            padding:80px 0;
+            border-bottom:1px solid var(--line);
+        }
+        .info-section:last-of-type{
+            border-bottom:none;
+        }
+        .info-grid{
+            display:grid;
+            grid-template-columns:1fr 1.2fr;
+            gap:60px;
+            align-items:start;
+        }
+        .info-text-block h2{
+            font-size:1.8rem;
+            margin-bottom:18px;
+            color:var(--ink);
+        }
+        .info-text-block p{
+            color:var(--ink-soft);
+            margin-bottom:20px;
+            font-size:1.02rem;
+        }
+
+        /* ---------- DOUBLE CHECKING STEPS ---------- */
+        .steps-container{
+            display:flex;
+            flex-direction:column;
+            gap:24px;
+        }
+        .step-card{
+            background:var(--paper);
+            border:1px solid var(--line);
+            padding:24px 28px;
+            display:flex;
+            gap:20px;
+            position:relative;
+        }
+        .step-number{
+            font-family:'Oswald', sans-serif;
+            font-size:2rem;
+            font-weight:600;
+            color:var(--yellow);
+            line-height:1;
+        }
+        .step-body h3{
+            font-size:1.05rem;
+            margin-bottom:6px;
+            color:var(--ink);
+        }
+        .step-body p{
+            font-size:0.92rem;
+            color:var(--ink-soft);
+            line-height:1.5;
+        }
+
+        /* ---------- PAYMENT BADGES ---------- */
+        .payments-list{
+            display:flex;
+            flex-direction:column;
+            gap:20px;
+        }
+        .payment-row{
+            display:flex;
+            align-items:center;
+            gap:20px;
+            padding:20px;
+            border:1px solid var(--line);
+            background:var(--paper);
+        }
+        .payment-logo-wrapper{
+            width:100px;
+            height:45px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            flex-shrink:0;
+            border-radius:6px;
+            overflow:hidden;
+        }
+        .logo-klarna{ background:#FFB3C7; }
+        .logo-scalapay{ background:#0B0733; }
+        .logo-satispay{ background:#FF3D3D; }
+        .logo-applepay{ background:#000000; }
+        .logo-googlepay{ background:#FFFFFF; border:1px solid var(--line); }
+        .logo-amazonpay{ background:#000000; }
+        .logo-stripe{ background:#635BFF; }
+        .logo-carte{ background:#FFFFFF; border:1px solid var(--line); }
+        .payment-desc h4{
+            font-size:1.05rem;
+            color:var(--ink);
+            margin-bottom:4px;
+        }
+        .payment-desc p{
+            font-size:0.9rem;
+            color:var(--ink-soft);
+            line-height:1.4;
+        }
+
+        /* ---------- SVG PAYMENT ICONS ---------- */
+        .svg-icon {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer{
+            background:var(--ink);
+            color:var(--cream);
+            padding:48px 0 26px;
+            border-top:1px solid var(--line);
+        }
+        .footer-top{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:20px;
+            padding-bottom:28px;
+            border-bottom:1px solid rgba(235,227,169,0.2);
+        }
+        .footer-brand img{
+            height:38px;
+        }
+        .footer-nav{
+            display:flex;
+            gap:24px;
+            flex-wrap:wrap;
+        }
+        .footer-nav a{
+            font-family:'Oswald', sans-serif;
+            font-size:0.8rem;
+            color:#CFC79A;
+            text-transform:uppercase;
+            letter-spacing:0.04em;
+        }
+        .footer-nav a:hover{
+            color:var(--yellow);
+        }
+        .footer-bottom{
+            padding-top:22px;
+            font-size:0.8rem;
+            color:#8B8564;
+            display:flex;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 900px){
+            nav{
+                display:none;
+            }
+            .menu-toggle{
+                display:inline-flex;
+                align-items:center;
+                justify-content:center;
+                width:42px;
+                height:42px;
+                border:1px solid var(--ink);
+                background:transparent;
+                cursor:pointer;
+                position:relative;
+                z-index:1;
+            }
+            .menu-toggle .bar{
+                transition:transform 0.2s ease, opacity 0.2s ease;
+                transform-box:fill-box;
+                transform-origin:center;
+            }
+            .site-header.open .menu-toggle .bar1{
+                transform:translateY(6px) rotate(45deg);
+            }
+            .site-header.open .menu-toggle .bar2{
+                opacity:0;
+            }
+            .site-header.open .menu-toggle .bar3{
+                transform:translateY(-6px) rotate(-45deg);
+            }
+            .site-header.open nav{
+                display:flex;
+                flex-direction:column;
+                align-items:flex-start;
+                position:absolute;
+                top:100%;
+                left:0;
+                right:0;
+                background:var(--paper);
+                border-bottom:1px solid var(--line);
+                padding:20px 28px 24px;
+                gap:18px;
+            }
+            .site-header.open nav .call-btn{
+                margin-top:4px;
+            }
+            .info-grid{
+                grid-template-columns:1fr;
+                gap:40px;
+            }
+        }
+        @media (max-width: 640px){
+            .payment-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 12px;
+            }
+            .payment-logo-wrapper {
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <div class="brand">
+                <a href="index.html"><img src="img_index/logo.png" alt="Ferramenta Ballini"></a>
+            </div>
+            <nav>
+                <a href="index.html#offerte">Vetrina</a>
+                <a href="index.html#catalogo">Catalogo</a>
+                <a href="index.html#bombole-gas">Bombole a gas</a>
+                <a href="informazioni.html">Pagamenti e ritiri</a>
+                <a href="index.html#contatti">Contatti</a>
+                <a class="call-btn" href="tel:+390775515391">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    Chiama
+                </a>
+            </nav>
+            <button class="menu-toggle" id="menuToggle" aria-label="Apri il menu">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1A1712" stroke-width="1.5" stroke-linecap="round">
+                    <line class="bar bar1" x1="3" y1="6" x2="21" y2="6"/>
+                    <line class="bar bar2" x1="3" y1="12" x2="21" y2="12"/>
+                    <line class="bar bar3" x1="3" y1="18" x2="21" y2="18"/>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <section class="page-head">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> &nbsp;/&nbsp; Informazioni
+            </div>
+            <h1>Come Ordinare e Ritirare di Persona</h1>
+        </div>
+    </section>
+
+    <!-- SEZIONE 1: COME FUNZIONA -->
+    <section class="info-section">
+        <div class="container info-grid">
+            <div class="info-text-block">
+                <span class="eyebrow">Il nostro metodo</span>
+                <div class="rule"></div>
+                <h2>Ordina Online, Ritira e Paga di Persona</h2>
+                <p>Presso la nostra ferramenta l'inventario fisico varia costantemente. Per questo abbiamo adottato una formula di <strong>ritiro in negozio su ordinazione</strong> a zero rischi: prenoti i tuoi prodotti online in pochi secondi, noi li mettiamo fisicamente da parte e tu li ritiri quando preferisci.</p>
+                <p>Nessuna transazione online al momento della prenotazione. Pagherai i tuoi prodotti direttamente al banco al momento del ritiro, con la massima libertà di scelta tra contanti, carte o i più moderni metodi di pagamento digitale sul nostro lettore POS di cassa.</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-body">
+                        <h3>Componi il carrello</h3>
+                        <p>Sfoglia i reparti del catalogo online dal tuo smartphone o PC, seleziona le varianti che ti interessano e aggiungi i prodotti al carrello.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-body">
+                        <h3>Invia la prenotazione</h3>
+                        <p>Apri il carrello, scrivi il tuo Nome e Cognome e invia la richiesta formale. Lo script aprirà in automatico un'e-mail precompilata o un messaggio WhatsApp indirizzato al negozio.</p>
+                    </div>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <div class="step-body">
+                        <h3>Messa da parte e ritiro</h3>
+                        <p>Il nostro personale verifica la disponibilità reale a scaffale e ti risponde via WhatsApp o mail. Da quel momento la merce è riservata a tuo nome: puoi passare a ritirarla e saldarla direttamente alla cassa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEZIONE 2: PAGAMENTI AL RITIRO (IN NEGOZIO) -->
+    <section class="info-section" style="background-color: rgba(216, 206, 158, 0.15);">
+        <div class="container info-grid">
+            <div class="info-text-block">
+                <span class="eyebrow">Sistemi accettati</span>
+                <div class="rule"></div>
+                <h2>Metodi di Pagamento alla Cassa</h2>
+                <p>Anche se l'ordine viene effettuato tramite il sito web, al momento del ritiro di persona nel nostro punto vendita in <strong>Via Armando Diaz, 301 a Fiuggi</strong> avrai accesso a tutti i più moderni sistemi di pagamento digitali.</p>
+                <p>Abbiamo abilitato sul nostro terminale POS di cassa i migliori circuiti bancari, consentendoti di pagare in totale sicurezza anche tramite smartphone, wearable o con comode rateizzazioni istantanee senza interessi.</p>
+            </div>
+            <div class="payments-list">
+                <!-- KLARNA -->
+                <div class="payment-row">
+                    <div class="payment-logo-wrapper logo-klarna">
+                        <!-- Klarna Logo SVG (ufficiale, simple-icons) -->
+                        <svg width="34" height="34" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Klarna">
+                            <path fill="#0B051D" d="M4.592 2v20H0V2h4.592zm11.46 0c0 4.194-1.583 8.105-4.415 11.068l-.278.283L17.702 22h-5.668l-6.893-9.4 1.779-1.332c2.858-2.14 4.535-5.378 4.637-8.924L11.562 2h4.49zM21.5 17a2.5 2.5 0 110 5 2.5 2.5 0 010-5z"/>
+                        </svg>
+                    </div>
+                    <div class="payment-desc">
+                        <h4>Klarna</h4>
+                        <p>Suddividi la spesa del tuo ordine in tre comode rate mensili senza interessi direttamente in cassa. Ideale per l'acquisto programmato di elettrodomestici, caldaie o elettroutensili professionali.</p>
+                    </div>
+                </div>
+
+                <!-- SCALAPAY -->
+                <div class="payment-row">
+                    <div class="payment-logo-wrapper logo-scalapay">
+                        <!-- Scalapay: non incluso nei set di loghi open-source disponibili;
+                             wordmark testuale fedele a colori e stile ufficiali -->
+                        <span style="font-family:'Oswald', sans-serif; font-weight:500; font-size:1rem; letter-spacing:0.01em; color:#FF30B1; text-transform:lowercase;">scalapay</span>
+                    </div>
+                    <div class="payment-desc">
+                        <h4>Scalapay</h4>
+                        <p>Disponibile al banco di cassa per dilazionare il pagamento in 3 rate a tasso zero, offrendoti il massimo comfort anche su importi importanti.</p>
+                    </div>
+                </div>
+
+                <!-- SATISPAY -->
+                <div class="payment-row">
+                    <div class="payment-logo-wrapper logo-satispay">
+                        <!-- Satispay: nessun logo vettoriale ufficiale open-source disponibile;
+                             wordmark testuale fedele al colore di brand -->
+                        <span style="font-family:'Oswald', sans-serif; font-weight:600; font-size:1rem; letter-spacing:0.01em; color:#FFFFFF;">Satispay</span>
+                    </div>
+                    <div class="payment-desc">
+                        <h4>Satispay</h4>
+                        <p>Paga direttamente dal tuo smartphone inquadrando il QR code alla cassa: addebito immediato sul tuo conto, senza commissioni per il cliente.</p>
+                    </div>
+                </div>
+
+                <!-- APPLE PAY -->
+                <div class="payment-row">
+                    <div class="payment-logo-wrapper logo-applepay">
+                        <!-- Apple Pay Logo SVG (ufficiale, simple-icons) -->
+                        <svg width="42" height="42" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Apple Pay">
+                            <path fill="#FFFFFF" d="M2.15 4.318a42.16 42.16 0 0 0-.454.003c-.15.005-.303.013-.452.04a1.44 1.44 0 0 0-1.06.772c-.07.138-.114.278-.14.43-.028.148-.037.3-.04.45A10.2 10.2 0 0 0 0 6.222v11.557c0 .07.002.138.003.207.004.15.013.303.04.452.027.15.072.291.142.429a1.436 1.436 0 0 0 .63.63c.138.07.278.115.43.142.148.027.3.036.45.04l.208.003h20.194l.207-.003c.15-.004.303-.013.452-.04.15-.027.291-.071.428-.141a1.432 1.432 0 0 0 .631-.631c.07-.138.115-.278.141-.43.027-.148.036-.3.04-.45.002-.07.003-.138.003-.208l.001-.246V6.221c0-.07-.002-.138-.004-.207a2.995 2.995 0 0 0-.04-.452 1.446 1.446 0 0 0-1.2-1.201 3.022 3.022 0 0 0-.452-.04 10.448 10.448 0 0 0-.453-.003zm0 .512h19.942c.066 0 .131.002.197.003.115.004.25.01.375.032.109.02.2.05.287.094a.927.927 0 0 1 .407.407.997.997 0 0 1 .094.288c.022.123.028.258.031.374.002.065.003.13.003.197v11.552c0 .065 0 .13-.003.196-.003.115-.009.25-.032.375a.927.927 0 0 1-.5.693 1.002 1.002 0 0 1-.286.094 2.598 2.598 0 0 1-.373.032l-.2.003H1.906c-.066 0-.133-.002-.196-.003a2.61 2.61 0 0 1-.375-.032c-.109-.02-.2-.05-.288-.094a.918.918 0 0 1-.406-.407 1.006 1.006 0 0 1-.094-.288 2.531 2.531 0 0 1-.032-.373 9.588 9.588 0 0 1-.002-.197V6.224c0-.065 0-.131.002-.197.004-.114.01-.248.032-.375.02-.108.05-.199.094-.287a.925.925 0 0 1 .407-.406 1.03 1.03 0 0 1 .287-.094c.125-.022.26-.029.375-.032.065-.002.131-.002.196-.003zm4.71 3.7c-.3.016-.668.199-.88.456-.191.22-.36.58-.316.918.338.03.675-.169.888-.418.205-.258.345-.603.308-.955zm2.207.42v5.493h.852v-1.877h1.18c1.078 0 1.835-.739 1.835-1.812 0-1.07-.742-1.805-1.808-1.805zm.852.719h.982c.739 0 1.161.396 1.161 1.089 0 .692-.422 1.092-1.164 1.092h-.979zm-3.154.3c-.45.01-.83.28-1.05.28-.235 0-.593-.264-.981-.257a1.446 1.446 0 0 0-1.23.747c-.527.908-.139 2.255.374 2.995.249.366.549.769.944.754.373-.014.52-.242.973-.242.454 0 .586.242.98.235.41-.007.667-.366.915-.733.286-.417.403-.82.41-.841-.007-.008-.79-.308-.797-1.209-.008-.754.615-1.113.644-1.135-.352-.52-.9-.578-1.09-.593a1.123 1.123 0 0 0-.092-.002zm8.204.397c-.99 0-1.606.533-1.652 1.256h.777c.072-.358.369-.586.845-.586.502 0 .803.266.803.711v.309l-1.097.064c-.951.054-1.488.484-1.488 1.184 0 .72.548 1.207 1.332 1.207.526 0 1.032-.281 1.264-.727h.019v.659h.788v-2.76c0-.803-.62-1.317-1.591-1.317zm1.94.072l1.446 4.009c0 .003-.073.24-.073.247-.125.41-.33.571-.711.571-.069 0-.206 0-.267-.015v.666c.06.011.267.019.335.019.83 0 1.226-.312 1.568-1.283l1.5-4.214h-.868l-1.012 3.259h-.015l-1.013-3.26zm-1.167 2.189v.316c0 .521-.45.917-1.024.917-.442 0-.731-.228-.731-.579 0-.342.278-.56.769-.593z"/>
+                        </svg>
+                    </div>
+                    <div class="payment-desc">
+                        <h4>Apple Pay</h4>
+                        <p>Avvicina il tuo iPhone o Apple Watch al nostro POS abilitato per pagare istantaneamente con FaceID o TouchID, senza bisogno di estrarre la carta fisica.</p>
+                    </div>
+                </div>
+
+                <!-- GOOGLE PAY -->
+                <div class="payment-row">
+                    <div class="payment-logo-wrapper logo-googlepay">
+                        <!-- Google Pay Logo SVG (ufficiale, simple-icons) -->
+                        <svg width="36" height="36" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google Pay">
+                            <path fill="#4285F4" d="M3.963 7.235A3.963 3.963 0 00.422 9.419a3.963 3.963 0 000 3.559 3.963 3.963 0 003.541 2.184c1.07 0 1.97-.352 2.627-.957.748-.69 1.18-1.71 1.18-2.916a4.722 4.722 0 00-.07-.806H3.964v1.526h2.14a1.835 1.835 0 01-.79 1.205c-.356.241-.814.379-1.35.379-1.034 0-1.911-.697-2.225-1.636a2.375 2.375 0 010-1.517c.314-.94 1.191-1.636 2.225-1.636a2.152 2.152 0 011.52.594l1.132-1.13a3.808 3.808 0 00-2.652-1.033zm6.501.55v6.9h.886V11.89h1.465c.603 0 1.11-.196 1.522-.588a1.911 1.911 0 00.635-1.464 1.92 1.92 0 00-.635-1.456 2.125 2.125 0 00-1.522-.598zm2.427.85a1.156 1.156 0 01.823.365 1.176 1.176 0 010 1.686 1.171 1.171 0 01-.877.357H11.35V8.635h1.487a1.156 1.156 0 01.054 0zm4.124 1.175c-.842 0-1.477.308-1.907.925l.781.491c.288-.417.68-.626 1.175-.626a1.255 1.255 0 01.856.323 1.009 1.009 0 01.366.785v.202c-.34-.193-.774-.289-1.3-.289-.617 0-1.11.145-1.479.434-.37.288-.554.677-.554 1.165a1.476 1.476 0 00.525 1.156c.35.308.785.463 1.305.463.61 0 1.098-.27 1.465-.81h.038v.655h.848v-2.909c0-.61-.19-1.09-.568-1.44-.38-.35-.896-.525-1.551-.525zm2.263.154l1.946 4.422-1.098 2.38h.915L24 9.963h-.965l-1.368 3.391h-.02l-1.406-3.39zm-2.146 2.368c.494 0 .88.11 1.156.33 0 .372-.147.696-.44.973a1.413 1.413 0 01-.997.414 1.081 1.081 0 01-.69-.232.708.708 0 01-.293-.578c0-.257.12-.47.363-.647.24-.173.54-.26.9-.26Z"/>
+                        </svg>
+                    </div>
+                    <div class="payment-desc">
+                        <h4>Google Pay</h4>
+                        <p>Paga in cassa in un istante utilizzando il tuo smartphone Android o smartwatch WearOS con le tue carte preferite registrate nell'account Google.</p>
+                    </div>
+                </div>
+
+                <!-- AMAZON PAY -->
+                <div class="payment-row">
+                    <div class="payment-logo-wrapper logo-amazonpay">
+                        <!-- Amazon Pay: nessun logo vettoriale ufficiale open-source disponibile;
+                             wordmark testuale fedele ai colori di brand -->
+                        <span style="font-family:'Oswald', sans-serif; font-weight:500; font-size:0.9rem;">
+                            <span style="color:#FFFFFF;">amazon</span><span style="color:#FF9900;"> pay</span>
+                        </span>
+                    </div>
+                    <div class="payment-desc">
+                        <h4>Amazon Pay</h4>
+                        <p>Salda l'acquisto in cassa utilizzando le informazioni di pagamento già salvate sul tuo account Amazon, in modo rapido e senza reinserire i dati della carta.</p>
+                    </div>
+                </div>
+
+                <!-- STRIPE -->
+                <div class="payment-row">
+                    <div class="payment-logo-wrapper logo-stripe">
+                        <!-- Stripe Logo SVG (ufficiale, simple-icons) -->
+                        <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stripe">
+                            <path fill="#FFFFFF" d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.992 3.757 7.218c0 4.039 2.467 5.76 6.476 7.219 2.585.92 3.445 1.574 3.445 2.583 0 .98-.84 1.545-2.354 1.545-1.875 0-4.965-.921-6.99-2.109l-.9 5.555C5.175 22.99 8.385 24 11.714 24c2.641 0 4.843-.624 6.328-1.813 1.664-1.305 2.525-3.236 2.525-5.732 0-4.128-2.524-5.851-6.594-7.305h.003z"/>
+                        </svg>
+                    </div>
+                    <div class="payment-desc">
+                        <h4>Stripe</h4>
+                        <p>Uno dei circuiti di pagamento digitale più sicuri al mondo: puoi utilizzarlo alla cassa per saldare l'acquisto con la tua carta in totale protezione.</p>
+                    </div>
+                </div>
+
+                <!-- CARTE DI CREDITO E BANCOMAT -->
+                <div class="payment-row">
+                    <div class="payment-logo-wrapper logo-carte">
+                        <!-- Visa e Mastercard Logo SVG (ufficiali, simple-icons) -->
+                        <svg width="30" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Visa" style="margin-right:4px;">
+                            <path fill="#1A1F71" d="M9.112 8.262L5.97 15.758H3.92L2.374 9.775c-.094-.368-.175-.503-.461-.658C1.447 8.864.677 8.627 0 8.479l.046-.217h3.3a.904.904 0 01.894.764l.817 4.338 2.018-5.102zm8.033 5.049c.008-1.979-2.736-2.088-2.717-2.972.006-.269.262-.555.822-.628a3.66 3.66 0 011.913.336l.34-1.59a5.207 5.207 0 00-1.814-.333c-1.917 0-3.266 1.02-3.278 2.479-.012 1.079.963 1.68 1.698 2.04.756.367 1.01.603 1.006.931-.005.504-.602.725-1.16.734-.975.015-1.54-.263-1.992-.473l-.351 1.642c.453.208 1.289.39 2.156.398 2.037 0 3.37-1.006 3.377-2.564m5.061 2.447H24l-1.565-7.496h-1.656a.883.883 0 00-.826.55l-2.909 6.946h2.036l.405-1.12h2.488zm-2.163-2.656l1.02-2.815.588 2.815zm-8.16-4.84l-1.603 7.496H8.34l1.605-7.496z"/>
+                        </svg>
+                        <svg width="24" height="18" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Mastercard">
+                            <path fill="#1A1712" d="M11.343 18.031c.058.049.12.098.181.146-1.177.783-2.59 1.238-4.107 1.238C3.32 19.416 0 16.096 0 12c0-4.095 3.32-7.416 7.416-7.416 1.518 0 2.931.456 4.105 1.238-.06.051-.12.098-.165.15C9.6 7.489 8.595 9.688 8.595 12c0 2.311 1.001 4.51 2.748 6.031zm5.241-13.447c-1.52 0-2.931.456-4.105 1.238.06.051.12.098.165.15C14.4 7.489 15.405 9.688 15.405 12c0 2.31-1.001 4.507-2.748 6.031-.058.049-.12.098-.181.146 1.177.783 2.588 1.238 4.107 1.238C20.68 19.416 24 16.096 24 12c0-4.094-3.32-7.416-7.416-7.416zM12 6.174c-.096.075-.189.15-.28.231C10.156 7.764 9.169 9.765 9.169 12c0 2.236.987 4.236 2.551 5.595.09.08.185.158.28.232.096-.074.189-.152.28-.232 1.563-1.359 2.551-3.359 2.551-5.595 0-2.235-.987-4.236-2.551-5.595-.09-.08-.184-.156-.28-.231z"/>
+                        </svg>
+                    </div>
+                    <div class="payment-desc">
+                        <h4>Carte di Credito e Bancomat</h4>
+                        <p>Accettiamo Bancomat, Postepay e tutti i principali circuiti di carte di credito o debito: Visa, Mastercard, Maestro e American Express.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-brand">
+                    <img src="img_index/logo_footer.png" alt="Ferramenta Ballini">
+                </div>
+                <div class="footer-nav">
+                    <a href="index.html#offerte">Vetrina</a>
+                    <a href="index.html#bombole-gas">Bombole a gas</a>
+                    <a href="index.html#catalogo">Catalogo</a>
+                    <a href="informazioni.html">Pagamenti e ritiri</a>
+                    <a href="index.html#contatti">Contatti</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Ferramenta Ballini. Dal 1954.</span>
+                <span>Via Armando Diaz, 301, 03014 Fiuggi (FR)</span>
+                <a href="area-gestione.html" style="opacity:0.55;">Area riservata</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const header = document.getElementById('siteHeader');
+        menuToggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            header.classList.toggle('open');
+        });
+        document.querySelectorAll('nav a').forEach(a=>{
+            a.addEventListener('click', ()=> header.classList.remove('open'));
+        });
+        document.addEventListener('click', (e) => {
+            if (header.classList.contains('open') && !header.contains(e.target)){
+                header.classList.remove('open');
+            }
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') header.classList.remove('open');
+        });
+    </script>
+</body>
+</html>
