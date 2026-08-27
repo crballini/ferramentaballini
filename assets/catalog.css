@@ -266,13 +266,7 @@ FERRAMENTA BALLINI — Catalogo di reparto
   margin-bottom:16px;
 }
 
-.product-price{
-  margin-top:auto;
-  font-family:'Oswald', sans-serif;
-  font-size:1.5rem;
-  font-weight:500;
-  color:var(--ink);
-}
+/* .product-price rimosso per far posto a .product-price-row (v4.0) */
 
 .catalog-empty{
   grid-column:1 / -1;
@@ -796,4 +790,506 @@ FERRAMENTA BALLINI — Catalogo di reparto
   .catalog-toolbar{ gap:12px; }
   .catalog-grid{ grid-template-columns:repeat(auto-fill, minmax(150px, 1fr)); }
   .modal-box{ padding:26px 22px; }
+}
+
+
+/* ============================================================
+   STILI CARRELLO (Aggiunti per Ritiro su Ordinazione v2.0)
+   ============================================================ */
+
+/* Pulsante Carrello Header */
+.cart-btn {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  cursor: pointer;
+  font-size: 0.82rem;
+  padding: 10px 20px;
+  white-space: nowrap;
+  margin-left: 15px;
+  z-index: 55;
+  text-decoration: none;
+}
+
+.cart-btn:hover {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--ink);
+}
+
+.cart-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.cart-btn .cart-count {
+  background: var(--yellow);
+  color: var(--ink);
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+  line-height: 1;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.cart-btn:hover .cart-count {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* Modale Carrello (Finestra Laterale Scorrevole / Drawer Drawer Panel) */
+.modal-overlay-cart {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 23, 18, 0.55);
+  display: none; /* Inizialmente none, cambiato in flex da JS */
+  justify-content: flex-end; /* Allinea il carrello sul lato destro dello schermo */
+  z-index: 9999; /* Sopra a tutti gli elementi */
+  opacity: 0;
+  transition: opacity 0.3s ease-out;
+  backdrop-filter: blur(2px);
+}
+
+.modal-overlay-cart.open {
+  opacity: 1;
+}
+
+.modal-box-cart {
+  background: var(--paper);
+  width: 100%;
+  max-width: 485px; /* Dimensione ideale e leggibile per un carrello a scorrimento laterale */
+  height: 100vh; /* Altezza intera della finestra del browser */
+  border-left: 1px solid var(--line);
+  position: relative;
+  padding: 40px 30px;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.15);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%); /* Nasconde il pannello fuori dallo schermo a destra */
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1); /* Transizione di scivolamento fluida */
+}
+
+.modal-overlay-cart.open .modal-box-cart {
+  transform: translateX(0); /* Fa scivolare il carrello all'interno */
+}
+
+.modal-title-cart {
+  font-size: 1.5rem;
+  color: var(--ink);
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.modal-title-cart svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--yellow-dark);
+}
+
+/* Tabella Articoli Carrello */
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 25px;
+  flex: 1; /* Occupa tutto lo spazio verticale disponibile */
+  max-height: calc(100vh - 420px); /* Ottimizza l'altezza per schermi medi */
+  overflow-y: auto;
+  padding-right: 5px;
+}
+
+.cart-item-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.cart-item-img {
+  width: 50px;
+  height: 50px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.cart-item-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.cart-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.cart-item-name {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cart-item-variant {
+  font-size: 0.72rem;
+  color: var(--ink-faint);
+  margin-top: 2px;
+}
+
+.cart-item-price {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cart-qty-ctrl {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.cart-qty-ctrl button {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--ink);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-qty-ctrl input {
+  width: 28px;
+  text-align: center;
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ink);
+  -moz-appearance: textfield;
+}
+
+.cart-remove-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--ink-faint);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  transition: color 0.15s ease;
+}
+
+.cart-remove-btn:hover {
+  color: #C92A2A;
+}
+
+.cart-remove-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Totale Carrello */
+.cart-total-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  border: 1px solid var(--line);
+  background: rgba(216, 206, 158, 0.15);
+  margin-bottom: 25px;
+}
+
+.cart-total-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1rem;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.cart-total-val {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+/* Modulo Prenotazione */
+.cart-booking-form h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink);
+  margin-bottom: 15px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+/* Metodo di contatto */
+.contact-method-select {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.contact-method-card {
+  border: 1px solid var(--line);
+  padding: 12px;
+  background: var(--paper);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.15s ease;
+}
+
+.contact-method-card input[type="radio"] {
+  accent-color: var(--ink);
+  cursor: pointer;
+}
+
+.contact-method-card label {
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-method-card label svg {
+  width: 14px;
+  height: 14px;
+}
+
+.contact-method-card.active {
+  border-color: var(--yellow-dark);
+  background: rgba(241, 169, 44, 0.05);
+}
+
+.contact-method-card.active label {
+  color: var(--ink);
+}
+
+.cart-submit-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  padding: 14px 24px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+}
+
+.cart-submit-btn:hover {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--ink);
+}
+
+.cart-submit-btn:disabled {
+  background: var(--line);
+  border-color: var(--line);
+  color: var(--ink-faint);
+  cursor: not-allowed;
+}
+
+.empty-cart-message {
+  text-align: center;
+  padding: 40px 10px;
+  color: var(--ink-faint);
+}
+
+.empty-cart-message svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--ink-faint);
+  margin-bottom: 12px;
+  opacity: 0.7;
+}
+
+/* Modifiche al selettore quantità nella modale di dettaglio prodotto */
+.modal-detail-btn-cart {
+  background: var(--yellow);
+  color: var(--ink);
+  border: 1px solid var(--yellow);
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  padding: 12px 20px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.modal-detail-btn-cart:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.modal-detail-btn-cart svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Animazione toast di successo */
+.toast-cart {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 14px 24px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  border-left: 4px solid var(--yellow);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 310;
+}
+
+.toast-cart.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsività su tablet/mobile per la modale del carrello */
+@media (max-width: 768px) {
+  .modal-box-cart {
+    padding: 30px 20px;
+  }
+  .form-row-2 {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .cart-btn {
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    margin-left: auto;
+    margin-right: 15px;
+  }
+  .cart-btn .cart-btn-text {
+    display: none; /* nascondi su mobile, lasciando solo l'icona ed il contatore */
+  }
+  .site-header .container {
+    justify-content: space-between;
+  }
+}
+
+/* ---------- AGGIORNAMENTO CARRELLO RAPIDO (v4.0) ---------- */
+.product-price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 10px;
+  gap: 10px;
+}
+
+.product-price-val {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1;
+}
+
+.card-add-to-cart-btn {
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.card-add-to-cart-btn:hover {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--ink);
+}
+
+.card-add-to-cart-btn svg {
+  width: 15px;
+  height: 15px;
 }
