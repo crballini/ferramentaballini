@@ -4,8 +4,11 @@
     "name": "Pennellessa tripla manico legno",
     "category": "Pennelli e rulli",
     "price": 1.5,
-    "availability": "disponibile",
     "image": "assets/img/vernici-colori/VC-PEN-001.webp",
+    "images": [
+      "assets/img/vernici-colori/VC-PEN-001.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "numero",
       "options": [
@@ -41,8 +44,11 @@
     "name": "Pennellessa tripla manico plastica",
     "category": "Pennelli e rulli",
     "price": 0.9,
-    "availability": "disponibile",
     "image": "assets/img/vernici-colori/VC-PEN-002.webp",
+    "images": [
+      "assets/img/vernici-colori/VC-PEN-002.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "numero",
       "options": [

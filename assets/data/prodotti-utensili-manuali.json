@@ -4,24 +4,33 @@
     "name": "Chiave per candele - doppio snodo esagonale - 255 mm x 16",
     "category": "Chiavi",
     "price": 5.0,
-    "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-CHI-001.webp"
+    "image": "assets/img/utensili-manuali/UM-CHI-001.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-CHI-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "UM-CHI-002",
     "name": "Cricchetto reversibile 1/4\"",
     "category": "Chiavi",
     "price": 5.3,
-    "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-CHI-002.webp"
+    "image": "assets/img/utensili-manuali/UM-CHI-002.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-CHI-002.webp"
+    ],
+    "description": ""
   },
   {
     "code": "UM-CAC-001",
     "name": "Cacciavite a croce pz",
     "category": "Cacciaviti e bit",
     "price": 2.1,
-    "availability": "disponibile",
     "image": "assets/img/utensili-manuali/UM-CAC-001.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-CAC-001.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "varianti",
       "options": [
@@ -41,8 +50,11 @@
     "name": "Cacciavite a croce ph",
     "category": "Cacciaviti e bit",
     "price": 1.8,
-    "availability": "disponibile",
     "image": "assets/img/utensili-manuali/UM-CAC-002.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-CAC-002.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "varianti",
       "options": [
@@ -66,8 +78,11 @@
     "name": "Cacciavite a taglio",
     "category": "Cacciaviti e bit",
     "price": 1.8,
-    "availability": "disponibile",
     "image": "assets/img/utensili-manuali/UM-CAC-003.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-CAC-003.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "varianti",
       "options": [
@@ -99,56 +114,77 @@
     "name": "Pinza a becchi semitondi - 160 mm",
     "category": "Pinze e tronchesi",
     "price": 6.8,
-    "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-PIN-001.webp"
+    "image": "assets/img/utensili-manuali/UM-PIN-001.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-PIN-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "UM-PIN-002",
     "name": "Pinza universiale - 180 mm",
     "category": "Pinze e tronchesi",
     "price": 7.6,
-    "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-PIN-002.webp"
+    "image": "assets/img/utensili-manuali/UM-PIN-002.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-PIN-002.webp"
+    ],
+    "description": ""
   },
   {
     "code": "UM-MET-001",
     "name": "Rotella metrica STANLEY - 20 m",
     "category": "Metri e livelle",
     "price": 14.0,
-    "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-MET-001.webp"
+    "image": "assets/img/utensili-manuali/UM-MET-001.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-MET-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "UM-TAG-001",
     "name": "Seghe a tazza - 26 mm / 63 mm",
     "category": "Taglio",
     "price": 4.4,
-    "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-TAG-001.webp"
+    "image": "assets/img/utensili-manuali/UM-TAG-001.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-TAG-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "UM-ALT-001",
     "name": "Giratubi svedese - diametro 1\"",
     "category": "Altro",
     "price": 15.0,
-    "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-ALT-001.webp"
+    "image": "assets/img/utensili-manuali/UM-ALT-001.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-ALT-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "UM-ALT-002",
     "name": "Strettoia felagname - 20 cm",
     "category": "Altro",
     "price": 4.5,
-    "availability": "disponibile",
-    "image": "assets/img/utensili-manuali/UM-ALT-002.webp"
+    "image": "assets/img/utensili-manuali/UM-ALT-002.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-ALT-002.webp"
+    ],
+    "description": ""
   },
   {
     "code": "UM-TAG-002",
     "name": "Cutter autobloccante 'UNK 2 in 1' corpo in lega di zinco",
     "category": "Taglio",
     "price": 3.6,
-    "availability": "disponibile",
     "image": "assets/img/utensili-manuali/UM-TAG-002.webp",
+    "images": [
+      "assets/img/utensili-manuali/UM-TAG-002.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "varianti",
       "options": [

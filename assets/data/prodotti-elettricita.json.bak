@@ -4,47 +4,41 @@
     "name": "Interruttore differenziale puro ETTROIT - 20A, 2P",
     "category": "Prese e interruttori",
     "price": 22.9,
-    "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-PRE-001.jpg"
+    "image": "assets/img/elettricita/EL-PRE-001.webp"
   },
   {
     "code": "EL-ILL-001",
     "name": "Plafoniera a LED 'gabri' effetto 'cielo stellato' - diam. 40 cm, 36 W",
     "category": "Illuminazione",
     "price": 29.9,
-    "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-ILL-001.jpg"
+    "image": "assets/img/elettricita/EL-ILL-001.webp"
   },
   {
     "code": "EL-MUL-001",
     "name": "Adattatore triplo con C/PROT sovraccarico FANTON",
     "category": "Multiprese",
     "price": 9.9,
-    "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-MUL-001.jpg"
+    "image": "assets/img/elettricita/EL-MUL-001.webp"
   },
   {
     "code": "EL-MUL-002",
     "name": "Adattatore triplo C/PROT sovraccarico ELETTROCANALI",
     "category": "Multiprese",
     "price": 7.9,
-    "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-MUL-002.jpg"
+    "image": "assets/img/elettricita/EL-MUL-002.webp"
   },
   {
     "code": "EL-MUL-003",
     "name": "Adattatore doppio con limitatore termico FANTON",
     "category": "Multiprese",
     "price": 10.9,
-    "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-MUL-003.jpg"
+    "image": "assets/img/elettricita/EL-MUL-003.webp"
   },
   {
     "code": "EL-MUL-004",
     "name": "Adattatore multipresa USB ELETTROCANALI",
     "category": "Multiprese",
     "price": 12.9,
-    "availability": "disponibile",
-    "image": "assets/img/elettricita/EL-MUL-004.jpg"
+    "image": "assets/img/elettricita/EL-MUL-004.webp"
   }
 ]

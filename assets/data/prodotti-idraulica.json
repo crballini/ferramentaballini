@@ -4,8 +4,11 @@
     "name": "Press control FLUXY",
     "category": "Press control",
     "price": 31.0,
-    "availability": "disponibile",
     "image": "assets/img/idraulica/ID-PRC-001.webp",
+    "images": [
+      "assets/img/idraulica/ID-PRC-001.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "varianti",
       "options": [
@@ -25,8 +28,11 @@
     "name": "Flessibile per doccia acciaio",
     "category": "Accessori doccia",
     "price": 3.9,
-    "availability": "disponibile",
     "image": "assets/img/idraulica/ID-DOC-001.webp",
+    "images": [
+      "assets/img/idraulica/ID-DOC-001.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "varianti",
       "options": [

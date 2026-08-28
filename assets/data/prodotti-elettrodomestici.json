@@ -4,7 +4,6 @@
     "name": "Frigo combi BEKO - 262 LT, H177, INOX",
     "category": "Frigoriferi e congelatori",
     "price": 429.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-FRI-001.webp"
   },
   {
@@ -12,7 +11,6 @@
     "name": "Frigo combi BEKO - 262 LT, H177",
     "category": "Frigoriferi e congelatori",
     "price": 419.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-FRI-002.webp"
   },
   {
@@ -20,7 +18,6 @@
     "name": "Frigo 2P COMFEE - 200 LT, H144, silver",
     "category": "Frigoriferi e congelatori",
     "price": 299.0,
-    "availability": "disponibile",
     "image": "assets/img/elettrodomestici/ED-FRI-003.webp"
   },
   {
@@ -28,7 +25,6 @@
     "name": "Frigo 2P COMFEE - 200 LT, H144",
     "category": "Frigoriferi e congelatori",
     "price": 299.0,
-    "availability": "disponibile",
     "image": "assets/img/elettrodomestici/ED-FRI-004.webp"
   },
   {
@@ -36,7 +32,6 @@
     "name": "Frigo tavolo NIKKEI - 90 LT, H84, con cella",
     "category": "Frigoriferi e congelatori",
     "price": 149.0,
-    "availability": "disponibile",
     "image": "assets/img/elettrodomestici/ED-FRI-005.webp"
   },
   {
@@ -44,7 +39,6 @@
     "name": "Frigo minibar COMFEE - 45 LT, H49",
     "category": "Frigoriferi e congelatori",
     "price": 149.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-FRI-006.webp"
   },
   {
@@ -52,7 +46,6 @@
     "name": "Congelatore verticale BEKO - 6CAS, 168 LT, H135",
     "category": "Frigoriferi e congelatori",
     "price": 469.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-FRI-007.webp"
   },
   {
@@ -60,7 +53,6 @@
     "name": "Congelatore verticale BEKO - 3CAS, 65 LT, H82",
     "category": "Frigoriferi e congelatori",
     "price": 269.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-FRI-008.webp"
   },
   {
@@ -68,7 +60,6 @@
     "name": "Congelatore orizzontale COMFEE - 102 LT, L54CM",
     "category": "Frigoriferi e congelatori",
     "price": 219.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-FRI-009.webp"
   },
   {
@@ -76,7 +67,6 @@
     "name": "Lavatrice snella CANDY - 5 kg, 1200 G, A, H70",
     "category": "Lavatrici e asciugatrici",
     "price": 619.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-LAV-001.webp"
   },
   {
@@ -84,7 +74,6 @@
     "name": "Lavatrice INDESIT - 7 kg, 1200 G, A INV",
     "category": "Lavatrici e asciugatrici",
     "price": 339.0,
-    "availability": "disponibile",
     "image": "assets/img/elettrodomestici/ED-LAV-002.webp"
   },
   {
@@ -92,7 +81,6 @@
     "name": "Lavatrice snella NIKKEI - 41 cm, 6 kg, 1000 G, A",
     "category": "Lavatrici e asciugatrici",
     "price": 269.0,
-    "availability": "disponibile",
     "image": "assets/img/elettrodomestici/ED-LAV-003.webp"
   },
   {
@@ -100,7 +88,6 @@
     "name": "Asciugatrice BEKO - 9 kg, P68CM",
     "category": "Lavatrici e asciugatrici",
     "price": 569.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-LAV-004.webp"
   },
   {
@@ -108,7 +95,6 @@
     "name": "Asciugatrice snella BEKO - 8 kg, P54CM",
     "category": "Lavatrici e asciugatrici",
     "price": 449.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-LAV-005.webp"
   },
   {
@@ -116,7 +102,6 @@
     "name": "Televisore HISENSE - TVC LED 65\" UHD, SMART",
     "category": "Televisori",
     "price": 599.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-TEL-001.webp"
   },
   {
@@ -124,7 +109,6 @@
     "name": "Televisore LG - TVC LED 43\" FHD, SMART",
     "category": "Televisori",
     "price": 269.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-TEL-002.webp"
   },
   {
@@ -132,7 +116,6 @@
     "name": "Televisore SMART TECH - TVC LED 32\" HD",
     "category": "Televisori",
     "price": 149.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-TEL-003.webp"
   },
   {
@@ -140,23 +123,20 @@
     "name": "Forno MWO grill digitale SAMSUNG- 32 LT, 900 W",
     "category": "Piccoli elettrodomestici",
     "price": 239.0,
-    "availability": "disponibile",
     "image": "assets/img/elettrodomestici/ED-PIC-001.webp"
   },
   {
     "code": "ED-INC-001",
     "name": "Lavatrice incasso INDESIT - 7 kg, 1200 G",
-    "category": "elettrodomestici da incasso",
+    "category": "Elettrodomestici da incasso",
     "price": 469.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-INC-001.webp"
   },
   {
     "code": "ED-INC-002",
     "name": "Frigorifero incasso BEKO - 215 LT, H144",
-    "category": "elettrodomestici da incasso",
+    "category": "Elettrodomestici da incasso",
     "price": 369.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettrodomestici/ED-INC-002.webp"
   },
   {
@@ -164,7 +144,6 @@
     "name": "Minifrigo da hotel MELCHIONI - 4.5 LT, 43.7 X 47 X 49.5 cm",
     "category": "Frigoriferi e congelatori",
     "price": 118.0,
-    "availability": "disponibile",
     "image": "assets/img/elettrodomestici/ED-FRI-010.webp"
   }
 ]

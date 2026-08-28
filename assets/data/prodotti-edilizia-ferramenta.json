@@ -4,16 +4,22 @@
     "name": "Fogli in carta abrasiva per levigatrice, attacco rapido STANLEY",
     "category": "Ferramenta varia",
     "price": 4.2,
-    "availability": "disponibile",
-    "image": "assets/img/edilizia-ferramenta/EF-FER-001.webp"
+    "image": "assets/img/edilizia-ferramenta/EF-FER-001.webp",
+    "images": [
+      "assets/img/edilizia-ferramenta/EF-FER-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EF-LUC-001",
     "name": "Lucchetto arco lungo YALE",
     "category": "Lucchetti e serrature",
     "price": 4.9,
-    "availability": "disponibile",
     "image": "assets/img/edilizia-ferramenta/EF-LUC-001.webp",
+    "images": [
+      "assets/img/edilizia-ferramenta/EF-LUC-001.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "varianti",
       "options": [
@@ -37,23 +43,32 @@
     "name": "Scarpa antinfortunistica '7246E' BETA",
     "category": "Scarpe",
     "price": 32.0,
-    "availability": "disponibile",
-    "image": "assets/img/edilizia-ferramenta/EF-SCA-001.webp"
+    "image": "assets/img/edilizia-ferramenta/EF-SCA-001.webp",
+    "images": [
+      "assets/img/edilizia-ferramenta/EF-SCA-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EF-SCA-002",
     "name": "Scarpa lavoro TAYLOR U-POWER",
     "category": "Scarpe",
     "price": 59.0,
-    "availability": "disponibile",
-    "image": "assets/img/edilizia-ferramenta/EF-SCA-002.webp"
+    "image": "assets/img/edilizia-ferramenta/EF-SCA-002.webp",
+    "images": [
+      "assets/img/edilizia-ferramenta/EF-SCA-002.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EF-ALT-001",
     "name": "Paraspigolo lisco PVC H2.6, 22 mm x 22 mm",
     "category": "Altro",
     "price": 2.5,
-    "availability": "disponibile",
-    "image": "assets/img/edilizia-ferramenta/EF-ALT-001.webp"
+    "image": "assets/img/edilizia-ferramenta/EF-ALT-001.webp",
+    "images": [
+      "assets/img/edilizia-ferramenta/EF-ALT-001.webp"
+    ],
+    "description": ""
   }
 ]

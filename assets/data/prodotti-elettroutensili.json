@@ -4,96 +4,132 @@
     "name": "Trapano a percussione '2607SRE' VULPOWER - 800 W",
     "category": "Trapani e avvitatori",
     "price": 91.0,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-001.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-001.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-TRA-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-TRA-002",
     "name": "Trapano a percussione 'Z1J-BL02' VULPOWER - 500 W",
     "category": "Trapani e avvitatori",
     "price": 36.9,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-002.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-002.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-TRA-002.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-TRA-003",
     "name": "Trapano a batteria 'D020' VULPOWER - 20 V, 2.0 Ah",
     "category": "Trapani e avvitatori",
     "price": 91.9,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-003.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-003.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-TRA-003.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-TRA-004",
     "name": "Trapano a batteria VULPOWER 'D023' - DC 12 V, 1.3 Ah",
     "category": "Trapani e avvitatori",
     "price": 58.9,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-004.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-004.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-TRA-004.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-TRA-005",
     "name": "Avvitatore a batteria 'S018' VULPOWER - 3.6 V, 1.3 Ah",
     "category": "Trapani e avvitatori",
     "price": 25.0,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-TRA-005.webp"
+    "image": "assets/img/elettroutensili/EU-TRA-005.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-TRA-005.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-SEG-001",
     "name": "Seghetto alternativo 'ZY8505' VULPOWER - 400 W",
     "category": "Seghe",
     "price": 43.5,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-SEG-001.webp"
+    "image": "assets/img/elettroutensili/EU-SEG-001.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-SEG-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-LEV-001",
     "name": "Levigatrice rotorbitale a batteria 'PS-125A' VULPOWER - 20 V, diam. platorello 125 mm",
     "category": "Levigatrici",
     "price": 75.9,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-LEV-001.webp"
+    "image": "assets/img/elettroutensili/EU-LEV-001.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-LEV-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-LEV-002",
     "name": "Levigatrice rotorbitale 'PS-CG-350A' VULPOWER - 350 W, diam. platorello 125 mm",
     "category": "Levigatrici",
     "price": 45.9,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-LEV-002.webp"
+    "image": "assets/img/elettroutensili/EU-LEV-002.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-LEV-002.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-LEV-003",
     "name": "Levigatrice orbitale 'S1B-DH31' VULPOWER - 135 W, dim. piastra 187 x 90 mm",
     "category": "Levigatrici",
     "price": 28.5,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-LEV-003.webp"
+    "image": "assets/img/elettroutensili/EU-LEV-003.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-LEV-003.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-SME-001",
     "name": "Smerigliatrice angolare B/D - 710 W, 115 mm",
     "category": "Smerigliatrici",
     "price": 41.9,
-    "availability": "disponibile",
-    "image": "assets/img/elettroutensili/EU-SME-001.webp"
+    "image": "assets/img/elettroutensili/EU-SME-001.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-SME-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-SME-002",
     "name": "Smerigliatrice angolare a batteria 'KZ10-125' VULPOWER - 20 V, diam. 115/125 mm",
     "category": "Smerigliatrici",
     "price": 104.9,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-SME-002.webp"
+    "image": "assets/img/elettroutensili/EU-SME-002.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-SME-002.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-BAT-001",
     "name": "Batteria a slitta VULPOWER",
     "category": "Batterie e caricabatterie",
     "price": 36.0,
-    "availability": "contattare-negozio",
     "image": "assets/img/elettroutensili/EU-BAT-001.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-BAT-001.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "varianti",
       "options": [
@@ -113,23 +149,32 @@
     "name": "Caricabatteria VULPOWER - 2 JACK, 21 V",
     "category": "Batterie e caricabatterie",
     "price": 22.0,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-BAT-002.webp"
+    "image": "assets/img/elettroutensili/EU-BAT-002.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-BAT-002.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-ALT-001",
     "name": "Mescolatore 'ST9-1200H' VULPOWER - 1200 W",
     "category": "Altro",
     "price": 91.5,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-ALT-001.webp"
+    "image": "assets/img/elettroutensili/EU-ALT-001.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-ALT-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "EU-ALT-002",
     "name": "Pistolia ad aria calda 'RF18-A2' VULPOWER - 1000/2000 W",
     "category": "Altro",
     "price": 21.0,
-    "availability": "contattare-negozio",
-    "image": "assets/img/elettroutensili/EU-ALT-002.webp"
+    "image": "assets/img/elettroutensili/EU-ALT-002.webp",
+    "images": [
+      "assets/img/elettroutensili/EU-ALT-002.webp"
+    ],
+    "description": ""
   }
 ]

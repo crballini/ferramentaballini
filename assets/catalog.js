@@ -56,16 +56,8 @@ aggiornare l'inventario significa sovrascrivere quel file, esportato dall'area d
   const countEl = document.getElementById('catalogCount');
   const searchInput = document.getElementById('searchInput');
   const catList = document.getElementById('categoryFilters');
-  const availList = document.getElementById('availabilityFilters');
   const priceList = document.getElementById('priceFilters');
   const resetBtn = document.getElementById('resetFilters');
-
-  const AVAILABILITY_LABELS = {
-    'disponibile': 'Disponibile',
-    'in-arrivo': 'In arrivo',
-    'esaurito': 'Esaurito',
-    'contattare-negozio': 'Contattare negozio'
-  };
 
   const DEFAULT_PRICE_BANDS = [
     { id:'p1', label:'Fino a € 10', test:(v)=> v <= 10 },
@@ -88,7 +80,6 @@ aggiornare l'inventario significa sovrascrivere quel file, esportato dall'area d
   }
 
   if (catList) buildCheckboxList(catList, cfg.subcategories.map(s => ({ value: s, label: s })), 'cat');
-  if (availList) buildCheckboxList(availList, Object.entries(AVAILABILITY_LABELS).map(([value, label]) => ({ value, label })), 'avail');
   if (priceList) buildCheckboxList(priceList, PRICE_BANDS.map(b => ({ value: b.id, label: b.label })), 'price');
 
   function getChecked(name){
@@ -117,7 +108,6 @@ aggiornare l'inventario significa sovrascrivere quel file, esportato dall'area d
   }
 
   function renderCard(p){
-    const availLabel = AVAILABILITY_LABELS[p.availability] || p.availability;
     const imageHtml = p.image ? `<img src="${resolveImagePath(p.image)}" alt="${escapeHtml(p.name)}">` : iconSvg();
     const variantHtml = (p.variants && p.variants.options && p.variants.options.length) ? `<div class="product-variant"><label>${escapeHtml(p.variants.label)}</label><select class="variant-select">${p.variants.options.map(o => `<option value="${escapeHtml(o.price)}">${escapeHtml(o.value)}</option>`).join('')}</select></div>` : '';
     const initialPrice = (p.variants && p.variants.options && p.variants.options.length) ? p.variants.options[0].price : p.price;
@@ -125,7 +115,6 @@ aggiornare l'inventario significa sovrascrivere quel file, esportato dall'area d
     return `
       <div class="product-card" data-id="${p.id}" style="cursor: pointer;">
         <div class="product-image">
-          <span class="availability" data-status="${p.availability}"><span class="dot"></span>${availLabel}</span>
           ${imageHtml}
         </div>
         <div class="product-body">
@@ -146,13 +135,11 @@ aggiornare l'inventario significa sovrascrivere quel file, esportato dall'area d
   function applyFilters(){
     const q = (searchInput.value || '').trim().toLowerCase();
     const cats = getChecked('cat');
-    const avails = getChecked('avail');
     const priceIds = getChecked('price');
 
     const filtered = products.filter(p => {
       if (q && !p.name.toLowerCase().includes(q)) return false;
       if (cats.length && !cats.includes(p.category)) return false;
-      if (avails.length && !avails.includes(p.availability)) return false;
       if (priceIds.length){
         const bands = PRICE_BANDS.filter(b => priceIds.includes(b.id));
         // Se ha varianti, verifichiamo il prezzo della prima variante, altrimenti il prezzo base
@@ -225,7 +212,7 @@ aggiornare l'inventario significa sovrascrivere quel file, esportato dall'area d
   }
 
   if (searchInput) searchInput.addEventListener('input', applyFilters);
-  [catList, availList, priceList].forEach(el => {
+  [catList, priceList].forEach(el => {
     if (el) el.addEventListener('change', applyFilters);
   });
   
@@ -272,7 +259,6 @@ aggiornare l'inventario significa sovrascrivere quel file, esportato dall'area d
               <h2 class="modal-detail-title" id="modalDetailTitle"></h2>
               <div class="modal-detail-price-avail">
                 <span class="modal-detail-price" id="modalDetailPrice"></span>
-                <span class="availability" id="modalDetailAvail" data-status=""></span>
               </div>
               <div class="modal-detail-desc" id="modalDetailDesc"></div>
               <div class="modal-detail-variants" id="modalDetailVariants"></div>
@@ -370,11 +356,6 @@ aggiornare l'inventario significa sovrascrivere quel file, esportato dall'area d
     // Informazioni base
     document.getElementById('modalDetailCat').textContent = p.category;
     document.getElementById('modalDetailTitle').textContent = p.name;
-    
-    // Disponibilità
-    const availEl = document.getElementById('modalDetailAvail');
-    availEl.textContent = AVAILABILITY_LABELS[p.availability] || p.availability;
-    availEl.setAttribute('data-status', p.availability);
     
     // Descrizione prodotto
     const descEl = document.getElementById('modalDetailDesc');

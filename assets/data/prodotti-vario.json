@@ -4,32 +4,44 @@
     "name": "Armadio alto con porta scope - 102 x 37 x H163 cm",
     "category": "Articoli per la casa",
     "price": 159.0,
-    "availability": "disponibile",
-    "image": "assets/img/vario/VA-CAS-001.webp"
+    "image": "assets/img/vario/VA-CAS-001.webp",
+    "images": [
+      "assets/img/vario/VA-CAS-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "VA-CAS-002",
     "name": "Stendibiancheria metallo 'jolly'",
     "category": "Articoli per la casa",
     "price": 13.9,
-    "availability": "disponibile",
-    "image": "assets/img/vario/VA-CAS-002.webp"
+    "image": "assets/img/vario/VA-CAS-002.webp",
+    "images": [
+      "assets/img/vario/VA-CAS-002.webp"
+    ],
+    "description": ""
   },
   {
     "code": "VA-GIA-001",
     "name": "Tubo antigelo verde - diam. 1/2\"",
     "category": "Giardinaggio",
     "price": 0.8,
-    "availability": "disponibile",
-    "image": "assets/img/vario/VA-GIA-001.webp"
+    "image": "assets/img/vario/VA-GIA-001.webp",
+    "images": [
+      "assets/img/vario/VA-GIA-001.webp"
+    ],
+    "description": ""
   },
   {
     "code": "VA-GIA-002",
     "name": "Tubo con kit idro",
     "category": "Giardinaggio",
     "price": 16.9,
-    "availability": "disponibile",
     "image": "assets/img/vario/VA-GIA-002.webp",
+    "images": [
+      "assets/img/vario/VA-GIA-002.webp"
+    ],
+    "description": "",
     "variants": {
       "label": "varianti",
       "options": [
@@ -49,23 +61,32 @@
     "name": "Scopa in bambù - 210 cm",
     "category": "Giardinaggio",
     "price": 5.5,
-    "availability": "disponibile",
-    "image": "assets/img/vario/VA-GIA-003.webp"
+    "image": "assets/img/vario/VA-GIA-003.webp",
+    "images": [
+      "assets/img/vario/VA-GIA-003.webp"
+    ],
+    "description": ""
   },
   {
     "code": "VA-GIA-004",
     "name": "Prato sintetico - H100 cm, spessore 7 mm",
     "category": "Giardinaggio",
     "price": 4.0,
-    "availability": "disponibile",
-    "image": "assets/img/vario/VA-GIA-004.webp"
+    "image": "assets/img/vario/VA-GIA-004.webp",
+    "images": [
+      "assets/img/vario/VA-GIA-004.webp"
+    ],
+    "description": ""
   },
   {
     "code": "VA-GIA-005",
     "name": "Tubo estensibile per giardino da 7.5 m a 22.5 m LIF",
     "category": "Giardinaggio",
     "price": 24.9,
-    "availability": "disponibile",
-    "image": "assets/img/vario/VA-GIA-005.webp"
+    "image": "assets/img/vario/VA-GIA-005.webp",
+    "images": [
+      "assets/img/vario/VA-GIA-005.webp"
+    ],
+    "description": ""
   }
 ]

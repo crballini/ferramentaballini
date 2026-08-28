@@ -65,8 +65,6 @@
     const reloadDeptBtn = document.getElementById('resetDataBtn');
     const searchInput  = document.getElementById('adminSearchInput');
 
-    const AVAILABILITY_LABELS = { 'disponibile':'Disponibile', 'in-arrivo':'In arrivo', 'esaurito':'Esaurito', 'contattare-negozio':'Contattare negozio' };
-
     // Codice prodotto: <REPARTO>-<SOTTOCATEGORIA>-<progressivo>, es. ED-LAV-001.
     // Tenere sincronizzati con le mappe usate per generare i codici già presenti
     // nei file assets/data/prodotti-*.json.
@@ -164,7 +162,6 @@
     }
 
     function renderCard(p, dept){
-      const availLabel = AVAILABILITY_LABELS[p.availability] || p.availability;
       const imageHtml = p.image ? `<img src="${p.image}" alt="${escapeHtml(p.name)}">` : iconSvg(dept);
       const variantHtml = (p.variants && p.variants.options && p.variants.options.length)
         ? `<div class="product-variant"><label>${escapeHtml(p.variants.label)}</label><select class="variant-select">${p.variants.options.map(o => `<option value="${escapeHtml(o.price)}">${escapeHtml(o.value)}</option>`).join('')}</select></div>`
@@ -172,7 +169,6 @@
       return `
         <div class="product-card is-admin" data-id="${p.id}">
           <div class="product-image">
-            <span class="availability" data-status="${p.availability}"><span class="dot"></span>${availLabel}</span>
             ${imageHtml}
           </div>
           <div class="product-body">
@@ -311,7 +307,6 @@
       refreshCategoryOptions();
       document.getElementById('productNameInput').value = p.name;
       document.getElementById('productPriceInput').value = p.price;
-      document.getElementById('productAvailabilitySelect').value = p.availability;
       categorySelect.value = p.category;
       pendingImage = p.image || null;
       previewBox.innerHTML = p.image ? `<img src="${p.image}" alt="Anteprima prodotto">` : iconSvg(dept);
@@ -352,7 +347,6 @@
       if (!dept.products) return;
       const name = document.getElementById('productNameInput').value.trim();
       const category = categorySelect.value;
-      const availability = document.getElementById('productAvailabilitySelect').value;
       if (!name) return;
 
       let variants = null;
@@ -384,13 +378,13 @@
       if (editingId){
         const p = dept.products.find(x => x.id === editingId);
         const categoryChanged = p.category !== category;
-        Object.assign(p, { name, category, price, availability, image: pendingImage, variants });
+        Object.assign(p, { name, category, price, image: pendingImage, variants });
         if (categoryChanged || !p.code) p.code = generateCode(dept, category);
         showToast('Prodotto aggiornato. Ricorda di esportare il reparto per rendere permanente la modifica.');
       } else {
         const newProduct = {
           id: 'p' + (nextIdByDept[dept.slug]++),
-          name, category, price, availability, image: pendingImage, variants
+          name, category, price, image: pendingImage, variants
         };
         newProduct.code = generateCode(dept, category);
         dept.products.unshift(newProduct);

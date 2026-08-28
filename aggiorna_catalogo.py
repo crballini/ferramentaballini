@@ -65,63 +65,87 @@ SUBCAT_PREFIX_MAP = {
 # Sottocategorie predefinite per i menù a tendine guidati
 SOTTOCATEGORIE_REPARTI = {
     'Edilizia e ferramenta': [
-        'Materiale edile',
-        'Ferramenta varia',
-        'Viteria e bulloneria',
+        'Viti e bulloneria',
         'Tasselli e ancoraggi',
-        'Sicurezza e serrature',
-        'Categoria Esempio'
+        'Cemento e malte',
+        'Ferramenta varia',
+        'Catene e corde',
+        'Lucchetti e serrature',
+        'Scarpe',
+        'Altro'
     ],
     'Elettricità': [
-        'Prese e interruttori',
         'Cavi e prolunghe',
+        'Prese e interruttori',
         'Illuminazione',
-        'Quadri elettrici e fusibili',
-        'Categoria Esempio'
+        'Multiprese',
+        'Fusibili e quadri',
+        'Torce e pile',
+        'Altro'
     ],
     'Elettrodomestici': [
         'Frigoriferi e congelatori',
-        'Cottura e forni',
-        'Lavaggio',
+        'Lavatrici e asciugatrici',
+        'Lavastoviglie',
+        'Cucine',
+        'Televisori',
         'Piccoli elettrodomestici',
+        'Elettrodomestici da incasso',
         'Climatizzazione',
-        'Categoria Esempio'
+        'Riscaldamento',
+        'Ricambi e accessori',
+        'Cura della persona',
+        'Altro'
     ],
     'Elettroutensili': [
         'Trapani e avvitatori',
-        'Smerigliatrici',
-        'Seghe e seghetti',
+        'Seghe',
         'Levigatrici',
-        'Categoria Esempio'
+        'Smerigliatrici',
+        'Batterie e caricabatterie',
+        'Accessori',
+        'Altro'
     ],
     'Idraulica': [
-        'Press control',
         'Tubi e raccordi',
         'Rubinetteria',
-        'Riscaldamento',
-        'Categoria Esempio'
+        'Sifoni e scarichi',
+        'Guarnizioni',
+        'Pompe',
+        'Teflon e sigillanti',
+        'Press control',
+        'Accessori doccia',
+        'Altro'
     ],
     'Utensili manuali': [
-        'Chiavi e serraggio',
-        'Giraviti',
-        'Pinze e cesoie',
-        'Martelli e scalpelli',
-        'Strumenti di misura',
-        'Categoria Esempio'
+        'Chiavi',
+        'Cacciaviti e bit',
+        'Pinze e tronchesi',
+        'Martelli e mazze',
+        'Metri e livelle',
+        'Taglio',
+        'Set e valigette',
+        'Altro'
     ],
     'Vernici e colori': [
-        'Vernici e smalti',
+        'Pitture murali',
+        'Smalti e vernici legno',
         'Pennelli e rulli',
-        'Stucchi e siliconi',
-        'Diluenti e solventi',
-        'Categoria Esempio'
+        'Solventi e diluenti',
+        'Nastri e teli protettivi',
+        'Stucchi e decorazioni',
+        'Tinte decorative',
+        'Vernici speciali',
+        'Altro'
     ],
     'Vario': [
         'Articoli per la casa',
+        'Contenitori e organizzazione',
+        'Cancelleria e ufficio',
+        'Pulizia',
+        'Articoli stagionali',
         'Giardinaggio',
-        'Bombole GPL gas',
-        'Raccorderia',
-        'Categoria Esempio'
+        'Altro'
     ]
 }
 
@@ -149,20 +173,6 @@ def clean_price(price_val):
     if match:
         return float(match.group(0))
     return 0.0
-
-def clean_availability(avail_val):
-    if pd.isna(avail_val) or str(avail_val).strip() == '':
-        return 'contattare-negozio'
-    
-    val = str(avail_val).lower().strip()
-    if val in ['disponibile', 'si', 'sì', 'dispo', 'y', 'yes', 'disponibili', 'active']:
-        return 'disponibile'
-    elif val in ['in arrivo', 'in-arrivo', 'arrivo', 'in_arrivo']:
-        return 'in-arrivo'
-    elif val in ['esaurito', 'no', 'n', 'esauriti', 'out of stock']:
-        return 'esaurito'
-    else:
-        return 'contattare-negozio'
 
 def parse_variants(variants_val):
     if pd.isna(variants_val) or str(variants_val).strip() == '':
@@ -452,9 +462,17 @@ def import_excel_to_json(excel_file, data_dir):
             if not name or pd.isna(row.get('Nome Prodotto')):
                 continue # Salta righe vuote
                 
+            # Se il prezzo non è ancora stato specificato, la riga è considerata
+            # una bozza non pronta: la ignoriamo e non la scriviamo nel JSON
+            # pubblicato sul sito. Resta comunque nel file Excel così puoi
+            # completarla con calma (vedi anche export_json_to_excel).
+            raw_price = row.get('Prezzo Base')
+            if pd.isna(raw_price) or str(raw_price).strip() == '':
+                print(f"  -> Prodotto '{name}' ignorato: prezzo non specificato (bozza non ancora pronta).")
+                continue
+
             subcategory = str(row.get('Sottocategoria', '')).strip()
-            price_base = clean_price(row.get('Prezzo Base'))
-            availability = clean_availability(row.get('Disponibilità'))
+            price_base = clean_price(raw_price)
             description = str(row.get('Descrizione', '')).strip() if not pd.isna(row.get('Descrizione')) else ""
             
             # Determinazione del Codice Prodotto intelligente
@@ -585,7 +603,6 @@ def import_excel_to_json(excel_file, data_dir):
                 "name": name,
                 "category": subcategory,
                 "price": price_base,
-                "availability": availability,
                 "image": primary_image,
                 "images": image_paths,
                 "description": description
@@ -600,8 +617,59 @@ def import_excel_to_json(excel_file, data_dir):
         if save_json_with_backup(products_list, json_path):
             print(f"File JSON aggiornato con successo: '{json_path}' ({len(products_list)} prodotti)")
 
+def load_existing_draft_rows(excel_file):
+    """
+    Rilegge il file Excel così com'è PRIMA di rigenerarlo, e recupera le righe
+    "bozza": prodotti con un nome ma senza prezzo specificato. import_excel_to_json
+    ignora sempre queste righe (non finiscono mai nei JSON pubblicati), quindi se
+    export_json_to_excel si limitasse a ricostruire i fogli solo dai JSON, --export
+    le farebbe sparire per sempre. Le recuperiamo qui per poterle riscrivere tali e
+    quali nel nuovo file.
+    """
+    drafts = {name: [] for name in REPARTO_MAP}
+    if not os.path.exists(excel_file):
+        return drafts
+
+    try:
+        xls = pd.ExcelFile(excel_file)
+    except Exception as e:
+        print(f"Nota: impossibile rileggere l'Excel esistente per recuperare le bozze senza prezzo: {e}")
+        return drafts
+
+    for sheet_name in xls.sheet_names:
+        if sheet_name not in REPARTO_MAP:
+            continue
+        try:
+            df = pd.read_excel(xls, sheet_name=sheet_name)
+        except Exception as e:
+            print(f"Nota: impossibile leggere il foglio '{sheet_name}' per recuperare le bozze: {e}")
+            continue
+
+        for _, row in df.iterrows():
+            name = str(row.get('Nome Prodotto', '')).strip()
+            if not name or pd.isna(row.get('Nome Prodotto')):
+                continue
+            raw_price = row.get('Prezzo Base')
+            if not (pd.isna(raw_price) or str(raw_price).strip() == ''):
+                continue  # ha già un prezzo: verrà rigenerata regolarmente dal JSON
+
+            def cell_str(val):
+                return '' if pd.isna(val) else str(val).strip()
+
+            drafts[sheet_name].append({
+                'code': cell_str(row.get('Codice Prodotto')),
+                'name': name,
+                'category': cell_str(row.get('Sottocategoria')),
+                'image': cell_str(row.get('Immagine')),
+                'description': cell_str(row.get('Descrizione')),
+                'variants': cell_str(row.get('Varianti')),
+            })
+
+    return drafts
+
 def export_json_to_excel(excel_file, data_dir):
     print(f"Inizio esportazione dei file JSON da '{data_dir}' verso l'Excel '{excel_file}'...")
+    draft_rows_by_reparto = load_existing_draft_rows(excel_file)
     wb = openpyxl.Workbook()
     default_sheet = wb.active
     wb.remove(default_sheet)
@@ -611,7 +679,6 @@ def export_json_to_excel(excel_file, data_dir):
         'Nome Prodotto',
         'Sottocategoria',
         'Prezzo Base',
-        'Disponibilità',
         'Immagine',
         'Descrizione',
         'Varianti'
@@ -657,6 +724,8 @@ def export_json_to_excel(excel_file, data_dir):
             cell.alignment = align_center
             cell.border = cell_border
             
+        added_names = set()
+
         if os.path.exists(json_path):
             print(f"Caricamento prodotti per il reparto '{reparto_name}' dal file '{json_filename}'...")
             try:
@@ -677,20 +746,33 @@ def export_json_to_excel(excel_file, data_dir):
                 except:
                     price = clean_price(price)
                     
-                avail = prod.get('availability', 'disponibile')
-                avail = avail.replace('-', ' ').title()
-                
                 # Semplificazione intelligente della lista delle immagini
                 img = get_simplified_images_string(prod, reparto_name)
                 
                 desc = prod.get('description', '')
                 var_str = format_variants_for_excel(prod.get('variants'))
                 
-                row_data = [code, name, subcategory, price, avail, img, desc, var_str]
+                row_data = [code, name, subcategory, price, img, desc, var_str]
                 ws.append(row_data)
+                if name:
+                    added_names.add(name.strip().lower())
         else:
             print(f"Nessun file JSON trovato per il reparto '{reparto_name}' ({json_filename}). Creato foglio vuoto.")
-            ws.append(['', 'Esempio Prodotto', 'Categoria Esempio', 10.00, 'Disponibile', '', '', ''])
+            ws.append(['', 'Esempio Prodotto', 'Categoria Esempio', 10.00, '', '', ''])
+            added_names.add('esempio prodotto')
+
+        # Ripristina le bozze senza prezzo che erano già nell'Excel: import_excel_to_json
+        # le ignora sempre, quindi non esistono nel JSON e andrebbero perse se non le
+        # riscrivessimo qui. Se nel frattempo un prodotto è stato completato con un
+        # prezzo (ed è quindi già presente tra i prodotti appena scritti), non lo
+        # duplichiamo.
+        for draft in draft_rows_by_reparto.get(reparto_name, []):
+            if draft['name'].strip().lower() in added_names:
+                continue
+            row_data = [draft['code'], draft['name'], draft['category'], '', draft['image'], draft['description'], draft['variants']]
+            ws.append(row_data)
+            added_names.add(draft['name'].strip().lower())
+            print(f"  -> Bozza senza prezzo mantenuta per '{reparto_name}': '{draft['name']}'")
             
         # Formatta celle dati
         for r_num in range(2, ws.max_row + 1):
@@ -700,7 +782,7 @@ def export_json_to_excel(excel_file, data_dir):
                 cell.font = Font(name='Segoe UI', size=10)
                 cell.border = cell_border
                 
-                if col_num in [1, 4, 5]: # Codice, Prezzo, Disponibilità
+                if col_num in [1, 4]: # Codice, Prezzo
                     cell.alignment = align_center
                 else:
                     cell.alignment = align_left
@@ -729,16 +811,6 @@ def export_json_to_excel(excel_file, data_dir):
         
         ws.add_data_validation(dv_sub)
         dv_sub.add("C2:C200") # Valido fino a riga 200 per foglio
-        
-        # Applica il menù a tendine per la Disponibilità (Colonna E)
-        dv_avail = DataValidation(type='list', formula1='\"Disponibile,In Arrivo,Esaurito,Contattare Negozio\"', allow_blank=True)
-        dv_avail.error = "Seleziona uno stato di disponibilità valido"
-        dv_avail.errorTitle = "Disponibilità non valida"
-        dv_avail.prompt = "Scegli lo stato di disponibilità"
-        dv_avail.promptTitle = "Disponibilità"
-        
-        ws.add_data_validation(dv_avail)
-        dv_avail.add("E2:E200")
         
     # Scrittura del foglio Sottocategorie (Impostazioni per i menù a tendine)
     ws_sub = wb.create_sheet(title='Sottocategorie')
